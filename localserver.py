@@ -10,12 +10,14 @@ request_mapping = {
     '/documentation/ru/': './ru/build/html/',
 }
 
+
 class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
     def translate_path(self, path):
         for k in request_mapping.keys():
             if path.startswith(k):
                 return request_mapping[k] + path[len(k):]
-        return None
+        return ""
+
 
 httpd = http.server.HTTPServer(server_address, MyRequestHandler)
 httpd.serve_forever()
