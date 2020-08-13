@@ -20,4 +20,6 @@ class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
 httpd = http.server.HTTPServer(server_address, MyRequestHandler)
+print("http://localhost:8880/documentation/en/")
+print("http://localhost:8880/documentation/ru/")
 httpd.serve_forever()

@@ -22,6 +22,7 @@ RUN  apt update && apt install make \
 RUN conda install -y \
     'sphinx=3.2' \
     'recommonmark=0.6' \
+    'conda-forge::sphinx-markdown-tables' \
      && conda clean -tipsy && conda clean --all --yes
 
 COPY en /opt/en
