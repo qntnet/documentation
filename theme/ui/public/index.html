@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>ui</title>
+</head>
+<body>
+<noscript>
+    <strong>We're sorry but ui doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+
+<div id="app" class="theme-container" :class="pageClasses">
+    <navbar @toggle-sidebar="toggleSidebar">
+        <router-link to='/' class="home-link">
+            <span class="site-name">Foo</span>
+        </router-link>
+        <div class="links">
+            <navlinks class="can-hide">
+                xxx
+            </navlinks>
+        </div>
+    </navbar>
+
+    <div class="main-container">
+        <div
+                class="sidebar-mask"
+                @click="toggleSidebar(false)"
+        ></div>
+
+        <sidebar
+                @toggle-sidebar="toggleSidebar"
+        >
+            <navlinks>
+                xxx
+            </navlinks>
+
+            <div class="sidebar-links" role="navigation" aria-label="main navigation">
+                <div class="sidebar-group">
+                    <p class="caption"><span class="caption-text">Docs</span></p>
+                    <ul class="current">
+                        <li class="toctree-l1 current"><a class="current reference internal" href="#">About</a>
+                            <ul>
+                                <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+                                <li class="toctree-l2"><a class="reference internal" href="#status">Status</a></li>
+                            </ul>
+                        </li>
+                        <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a>
+                        </li>
+                    </ul>
+
+                    <p class="caption"><span class="caption-text">Demo</span></p>
+                    <ul class="current">
+                        <li class="toctree-l1 current"><a class="reference internal" href="index.html">Demo</a>
+                            <ul class="current">
+                                <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic
+                                    Specification</a></li>
+                                <li class="toctree-l2"><a class="reference internal"
+                                                          href="admonition.html">Admonitions</a></li>
+                                <li class="toctree-l2"><a class="reference internal" href="domain.html">domain</a></li>
+                                <li class="toctree-l2"><a class="reference internal"
+                                                          href="extensions.html">Extensions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="caption"><span class="caption-text">Demo</span></p>
+                    <ul class="current">
+                        <li class="toctree-l1 current"><a class="reference internal" href="index.html">Demo</a>
+                            <ul class="current">
+                                <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic
+                                    Specification</a></li>
+                                <li class="toctree-l2"><a class="reference internal"
+                                                          href="admonition.html">Admonitions</a></li>
+                                <li class="toctree-l2"><a class="reference internal" href="domain.html">domain</a></li>
+                                <li class="toctree-l2"><a class="reference internal"
+                                                          href="extensions.html">Extensions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="caption"><span class="caption-text">Demo</span></p>
+                    <ul class="current">
+                        <li class="toctree-l1 current"><a class="reference internal" href="index.html">Demo</a>
+                            <ul class="current">
+                                <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic
+                                    Specification</a></li>
+                                <li class="toctree-l2"><a class="reference internal"
+                                                          href="admonition.html">Admonitions</a></li>
+                                <li class="toctree-l2"><a class="reference internal" href="domain.html">domain</a></li>
+                                <li class="toctree-l2"><a class="reference internal"
+                                                          href="extensions.html">Extensions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="caption"><span class="caption-text">Demo</span></p>
+                    <ul class="current">
+                        <li class="toctree-l1 current"><a class="reference internal" href="index.html">Demo</a>
+                            <ul class="current">
+                                <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic
+                                    Specification</a></li>
+                                <li class="toctree-l2"><a class="reference internal"
+                                                          href="admonition.html">Admonitions</a></li>
+                                <li class="toctree-l2"><a class="reference internal" href="domain.html">domain</a></li>
+                                <li class="toctree-l2"><a class="reference internal"
+                                                          href="extensions.html">Extensions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="caption"><span class="caption-text">Demo</span></p>
+                    <ul class="current">
+                        <li class="toctree-l1 current"><a class="reference internal" href="index.html">Demo</a>
+                            <ul class="current">
+                                <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic
+                                    Specification</a></li>
+                                <li class="toctree-l2"><a class="reference internal"
+                                                          href="admonition.html">Admonitions</a></li>
+                                <li class="toctree-l2"><a class="reference internal" href="domain.html">domain</a></li>
+                                <li class="toctree-l2"><a class="reference internal"
+                                                          href="extensions.html">Extensions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div><!-- sidebar-links -->
+
+        </sidebar>
+
+        <page> <!-- :sidebar-items="sidebarItems"> -->
+            <div class="content">
+                <div role="navigation" aria-label="navigation" class="body-header">
+                    <ul class="breadcrumbs">
+                        <li><a href="index.html">Docs</a> »</li>
+                        <li>Что такое QuantNet?</li>
+                    </ul>
+                    <ul class="page-nav">
+                        <li class="prev"><a href="index.html" title="previous chapter">← &lt;no title&gt;</a></li>
+                        <li class="next"><a href="index_3.html" title="next chapter">Быстрый старт →</a></li>
+                    </ul>
+                </div>
+                <hr>
+                <div role="main" class="content">
+                    <div id="quantnet" class="section"><h1>Что такое QuantNet?<a href="#quantnet"
+                                                                                 title="Permalink to this headline"
+                                                                                 class="headerlink">¶</a></h1>
+                        <div id="id1" class="section"><h2>Что такое QuantNet?<a href="#id1"
+                                                                                title="Permalink to this headline"
+                                                                                class="headerlink">¶</a></h2>
+                            <p><strong>QuantNet</strong> — компания, которая занимается исследованиями и разработкой
+                                торговых стратегий для финансовых рынков.</p>
+                            <p>Мы <strong>предлагаем</strong> пользователям</p>
+                            <ul class="simple">
+                                <li><p><strong>принять участие в розыгрыше 500 тысяч рублей за квартал</strong>,
+                                    отправив стратегии в соревнования.</p></li>
+                                <li><p>открытые инструменты для выгрузки <strong>данных</strong> с финансовых <strong>бирж</strong>.
+                                </p></li>
+                                <li><p>открытые инструменты для <strong>создания</strong> торговых
+                                    <strong>стратегий</strong>. Вы можете <strong>применить их для частной
+                                        торговли</strong>.</p></li>
+                                <li><p><strong>протестировать</strong> любую финансовую <strong>идею</strong>.</p></li>
+                                <li><p>дружественное и <strong>быструю обратную связь</strong> от комьюнити и нас в vk,
+                                    Telegram.</p></li>
+                            </ul>
+                            <p>Библиотеки и инструменты написаны на <strong>python</strong>.
+                                Разработку стратегий можно вести в <strong>Jupyter Notebook</strong> или <strong>Jupyter
+                                    lab</strong>. <strong>Мы вам даём инстансы до 8 гб оперативной памяти на каждую
+                                    стратегию.</strong>
+                                Посмотрите пример, который демонстрирует простоту создания торговых стратегий.</p></div>
+                        <div id="id2" class="section"><h2>Начало работы<a href="#id2" title="Permalink to this headline"
+                                                                          class="headerlink">¶</a></h2>
+                            <p><strong>Цель.</strong> Познакомить вас с тем как просто создавать и тестировать идеи
+                                финансовых стратегий.</p>
+                            <p><strong>Необходимые условия.</strong></p>
+                            <ul class="simple">
+                                <li><p>Зарегистрируйтесь на платформе</p></li>
+                                <li><p>Откройте вкладку стратегии в разработке.</p></li>
+                                <li><p>Нажмите создать стратегию или скопируйте любой шаблон готовых стратегий.</p></li>
+                            </ul>
+                            <div id="id3" class="section"><h3>Исторические финансовые данные<a href="#id3"
+                                                                                               title="Permalink to this headline"
+                                                                                               class="headerlink">¶</a>
+                            </h3>
+                                <p>Данные цен компаний Google и Apple за последние 4*365 дней, отсортированные в
+                                    хронологическом порядке</p>
+                                <div class="highlight-js notranslate">
+                                    <div class="highlight"><pre><span></span># Import quantnet libraries.
+import qnt.data as qndata
+import datetime as dt
+
+instruments_names = ['NASDAQ:AAPL', 'NASDAQ:ADP']
+
+data = qndata.load_data(
+                       assets=instruments_names,
+                       tail = dt.timedelta(days=4*365),
+                       dims = ("time", "field", "asset"),
+                       forward_order=True)
+</pre>
+                                    </div>
+                                </div>
+                                <div class="highlight-js notranslate">
+                                    <div class="highlight"><pre><span></span><span class="nx">data</span><span
+                                            class="p">.</span><span class="nx">sel</span><span class="p">(</span><span
+                                            class="nx">field</span><span class="o">=</span><span
+                                            class="s2">"open"</span><span class="p">).</span><span
+                                            class="nx">to_pandas</span><span class="p">().</span><span
+                                            class="nx">tail</span><span class="p">()</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div>
+                                    <table border="1" class="dataframe">
+                                        <thead>
+                                        <tr style="text-align: right;">
+                                            <th>asset</th>
+                                            <th>NASDAQ:AAPL</th>
+                                            <th>NASDAQ:GOOGL</th>
+                                        </tr>
+                                        <tr>
+                                            <th>time</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th>2020-08-03</th>
+                                            <td>12118.40</td>
+                                            <td>1491.00</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2020-08-04</th>
+                                            <td>12222.84</td>
+                                            <td>1486.71</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2020-08-05</th>
+                                            <td>12250.28</td>
+                                            <td>1476.82</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2020-08-06</th>
+                                            <td>12365.36</td>
+                                            <td>1476.15</td>
+                                        </tr>
+                                        <tr>
+                                            <th>2020-08-07</th>
+                                            <td>12678.96</td>
+                                            <td>1509.04</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="id4" class="section"><h3>Создание финансовой стратегии<a href="#id4"
+                                                                                              title="Permalink to this headline"
+                                                                                              class="headerlink">¶</a>
+                            </h3>
+                                <ul class="simple">
+                                    <li><p>У вас есть <strong>капитал</strong>, который вы ходите <strong>распределить
+                                        между активами</strong> (Google и Apple).</p></li>
+                                    <li><p>Стратегии на платформе создаются в виде <strong>весов</strong> от финансового
+                                        <strong>партфеля</strong>.</p></li>
+                                    <li><p><strong>Сколько процентов от капитала инвестировать в конкретный
+                                        актив</strong> - задача алгоритма.</p></li>
+                                    <li><p>Каждый торговый день доля инвестиций в актив может менятся, вы или
+                                        зарабатываете угадывая направления цен или теряете капитал.</p></li>
+                                </ul>
+                                <p>Идея стратегии. Вёзмём абсолютные изменения цен открытия. Цена текущего дня минус
+                                    цена ппредыдущего дня.
+                                    Получившиеся изменения возмём как веса активов.</p>
+                                <div class="highlight-python notranslate">
+                                    <div class="highlight"><pre><span></span><span class="n">price_open</span> <span
+                                            class="o">=</span> <span class="n">data</span><span class="o">.</span><span
+                                            class="n">sel</span><span class="p">(</span><span
+                                            class="n">field</span><span class="o">=</span><span class="s2">"open"</span><span
+                                            class="p">)</span>
+<span class="n">strategy</span> <span class="o">=</span> <span class="n">price_open</span> <span
+                                                class="o">-</span> <span class="n">price_open</span><span
+                                                class="o">.</span><span class="n">shift</span><span
+                                                class="p">(</span><span class="n">time</span><span
+                                                class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="id5" class="section"><h3>Проверка финансовой стратегии<a href="#id5"
+                                                                                              title="Permalink to this headline"
+                                                                                              class="headerlink">¶</a>
+                            </h3>
+                                <ul class="simple">
+                                    <li><p>Сколько вы сможете заработать или потерять? - показывает эквити</p></li>
+                                    <li><p>Хорошая идея или нет - показывает кофициент шарпа. Чем больше тем лучше.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="id6" class="section"><h3>Отправка стратегии в конкурс<a href="#id6"
+                                                                                             title="Permalink to this headline"
+                                                                                             class="headerlink">¶</a>
+                            </h3></div>
+                        </div>
+                        <div id="id7" class="section"><h2>Готовы к большему?<a href="#id7"
+                                                                               title="Permalink to this headline"
+                                                                               class="headerlink">¶</a></h2>
+                            <p>Пока мы лишь кратко представили самые основные возможности платформы
+                                <strong>QuantNet</strong> — остаток этого руководства посвящён более детальному
+                                рассмотрению этих и других возможностей, поэтому советуем прочитать его целиком!</p>
+                            <div id="video-modal" class="modal">
+                                <div class="video-space" style="padding: 56.25% 0px 0px; position: relative;">
+                                    <iframe src="https://player.vimeo.com/video/247494684?dnt=1" frameborder="0"
+                                            webkitallowfullscreen="" mozallowfullscreen=""
+                                            allowfullscreen="allowfullscreen"
+                                            style="height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; margin: 0px;"></iframe>
+                                </div>
+                                <p class="modal-text">Видео <a href="https://www.vuemastery.com" target="_blank"
+                                                               rel="sponsored noopener"
+                                                               title="Vue.js курсы на Vue Mastery">Vue Mastery</a>.
+                                    Посмотрите бесплатный курс Vue Mastery <a
+                                            href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/"
+                                            target="_blank" rel="sponsored noopener"
+                                            title="Vue.js курсы на Vue Mastery">Введение в курс Vue</a>.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-nav">
+                    <div class="inner">
+                        <ul class="page-nav">
+                            <li class="prev"><a href="index.html" title="previous chapter">← &lt;no title&gt;</a></li>
+                            <li class="next"><a href="index_3.html" title="next chapter">Быстрый старт →</a></li>
+                        </ul>
+                        <about-feedback></about-feedback>
+<!--                        <div role="contentinfo" class="footer">-->
+<!--                            © Copyright 2020, quantnet.-->
+<!--                            <br>-->
+<!--                            Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.0+ with <a-->
+<!--                                href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <!--                <h1 id="my-page-content">My page content-->
+            <!--                    <a class="headerlink" href="my-page-content">¶</a>-->
+            <!--                </h1>-->
+
+            <!--                <div class="section">-->
+            <!--                    <p>section 2</p>-->
+            <!--                </div>-->
+            <footer-quantnet></footer-quantnet>
+        </page>
+    </div>
+
+</div>
+<!-- built files will be auto injected -->
+</body>
+</html>
