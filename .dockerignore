@@ -1,0 +1,4 @@
+.git
+.cache
+theme/ui/dist/*
+theme/ui/node_modules/*

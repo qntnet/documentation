@@ -19,11 +19,24 @@ RUN  apt update && apt install make \
     && apt autoclean \
     && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log
 
+
 RUN conda install -y \
     'sphinx=3.2' \
     'recommonmark=0.6' \
     'conda-forge::sphinx-markdown-tables' \
      && conda clean -tipsy && conda clean --all --yes
+
+RUN  apt update && apt -y install curl    && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs \
+    && apt autoclean \
+    && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log
+
+
+COPY theme /opt/theme
+RUN cd /opt/theme/ui   \
+    && npm install \
+    && npm run build \
+    && pip3 install -e ..
 
 COPY en /opt/en
 RUN cd /opt/en && make html
