@@ -1,23 +1,41 @@
-# Long Position vs. Short Position
+Длинная позиция & короткая позиция
+----------------------------------
 
-## Basic information
-To sell a stock, one just needs to assign it a negative weight in the algorithm.Assume, you have the following weights:
+## Основная информация
+Чтобы продать акцию, нужно просто присвоить ей отрицательный вес в
+алгоритме. Предположим, у вас есть следующие веса:
 
-|date        | AAPL | GOOG | TSLA|
-| ---------- | ----:| ----:| ---:|
-|Mar 02, 2020|	0.4	| 0.4  |-0.2 |
-
-The positive sign means that we hold a long position (buy shares); the negative sign means we hold a short position (sell shares). Thus, the capital $1M will be allocated in the following proportions: $400,000 to AAPL; $400,000 to GOOG; $-200,000 to TSLA.
+|date          | AAPL | GOOG | TSLA |
+| ------------ | ---- | ---- | ---- |
+| Mar 02, 2020 | 0.4  |  0.4 | -0.2 |
 
 
-## Details
+Положительное значение соответствует длинной позиции (покупаем акции);
+отрицательное значение соответствует короткой позиции (продаем акции).
+Таким образом, капитал $1M будет выделен в следующих пропорциях:
+$400,000 для AAPL; $400,000 для GOOG; $-200,000 для TSLA.
 
-For our platform, we use a simplified treatment of short positions and mirror long positions. For a real-environment trading one needs to remember that short positions are associated with higher risks. An investor selling shares that he does not yet own (as a rule, from his broker’s account) is obligated to buy them back after a while. Thus, the investor expects a fall in prices and plays against the market. It leads to several risks:
+## Детали
 
-* Some stocks are hard to borrow. The reason is high demand, a limited number of securities and so on. For a short position for such securities, the broker charges an additional fee.
+  В нашей платформе мы используем упрощенное представление короткой
+позиции: это обратное действие к длинной позиции. Для торговли в
+реальных условиях нужно помнить, что короткие позиции связаны с более
+высокими рисками. Инвестор, продающий акции, которыми он еще не владеет
+(как правило, продаёт со счета своего брокера), обязан выкупить их через
+некоторое время. Таким образом, инвестор ожидает падения цен и играет
+против рынка. Это приводит к следующим рискам:
 
-* The short seller is responsible for paying dividends on shares to the person from whom they were borrowed.
+-   Некоторые акции трудно заимствовать. Причина - высокий спрос,
+    ограниченное количество ценных бумаг и т.д. За короткую позицию по
+    таким ценным бумагам брокер взимает дополнительную комиссию.
 
-* The potential losses in a short sale can be endless, because theoretically the maximum price of shares is unlimited. On the other hand, the share price will not fall below zero, so the maximum profit is limited.
+-   Держатель коротких позиций несет ответственность за выплату
+    дивидендов по акциям лицу, у которого они были заимствованы.
 
-Even if the estimate is correct, the moment may be inappropriate. It is extremely unprofitable to hold a short position at a rising price for a long time.
+-   Потенциальные потери при короткой позиции могут быть бесконечными,
+    поскольку теоретически максимальная цена акций не ограничена. С
+    другой стороны, цена акций не опустится ниже нуля, поэтому
+    максимальная прибыль ограничена.
+
+-   Даже если оценка верна, момент может быть неподходящим. Крайне
+    невыгодно долго держать короткую позицию по растущей цене.

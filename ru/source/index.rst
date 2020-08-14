@@ -3,11 +3,6 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-WTF?
-====
-
-:math:`a^2 + b^2 = c^2`
-
 .. toctree::
    :maxdepth: 2
    :caption: Начало работы:
@@ -30,7 +25,29 @@ WTF?
    intro/positions.md
    intro/rr.md
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Качество алгоритма:
 
+   /quality/rules.md
+   /quality/sharpe.md
+   /quality/unique.md
+   /quality/major.md
+   /quality/isos.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Доступные данные:
+
+   /data/market.md
+   /data/fundamental.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Как улучшить алгоритм:
+
+   /improve/neutralization.md
+   /improve/max-sw.md
 
 
 Indices and tables
@@ -39,3 +56,9 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+..
+    Leep it! Math module requires it.
+
+:math:`\ `

@@ -1,5 +1,6 @@
-# What is Algorithmic Trading?
+# Что такое алгоритмическая торговля?
 
-"Algorithmic trading is a process for executing orders utilizing automated and pre-programmed trading instructions to 
-account for variables such as price, timing and volume. An algorithm is a set of directions for solving a problem. 
-Computer algorithms send small portions of the full order to the market over time." - Investopedia.
+\"Алгоритмическая торговля - это процесс исполнения ордеров с
+использованием автоматических и предварительно запрограммированных
+торговых инструкций для учета таких переменных, как цена, время и
+объем.\" - Investopedia.

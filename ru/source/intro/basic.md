@@ -1,8 +1,17 @@
-# Вasic concepts
+# Основы
 
-Algorithmic trading means that the decision to buy or sell financial securities on the stock exchange is made based on a predetermined algorithm, with the intent to make a profit. On our platform, it is a python script that takes historical data as an input and gives a decision to buy/sell stock as output.
+  Алгоритмическая торговля означает, что решение о покупке или продаже
+финансовых ценных бумаг на бирже принимается на основе заранее
+определенного алгоритма. На нашей платформе алгоритм - это скрипт на
+python, который принимает исторические данные в качестве входных данных
+и дает решение о покупке/продаже акции.
 
-Say we have a capital $1M and want to invest in a portfolio consisting of three stocks: Apple Inc (AAPL), Alphabet Inc Class C (GOOG), Tesla Inc (TSLA). Let's have a look at the open price of these stocks for some period. Open is the price at which a security first trades upon the opening of an exchange on a trading day. We use historical data from the NASDAQ exchange as input:
+Скажем, у нас есть капитал в размере \$1 млн., необходимо сформировать
+инвестиционный портфель из трех инструментов: Apple Inc (AAPL), Alphabet
+Inc класса C (GOOG), Tesla Inc (TSLA). Давайте посмотрим на цену *open*
+этих акций за определенный период. *Open* - цена, по которой ценные
+бумаги впервые торгуются после открытия биржи в торговый день. Мы
+используем исторические данные биржи NASDAQ в качестве входных данных:
 
 | date         | AAPL   | GOOG     | TSLA   |
 |:------------:| ------:| --------:| ------:|
@@ -10,14 +19,21 @@ Say we have a capital $1M and want to invest in a portfolio consisting of three 
 | Mar 03, 2020 | 303.67 | 1,399.42 | 805.00 |
 | Mar 04, 2020 | 296.44 | 1,359.23 | 763.96 |
 
-_Table 1: Stock open price in USD. NASDAQ exchange._
+_Таблица 1. Цена акций (в USD) на момент открытия биржи NASDAQ._
 
+Теперь нам нужно придумать алгоритм, по которому капитал будет
+распределяться между акциями. Алгоритм представляет собой найденную
+закономерность, сигнал о событиях, происходящих в мире и отображающихся
+в исторических данных.
 
-Now we need to come up with an algorithm by which our capital will be allocated between stocks. The algorithm is an intelligent search of some world event reflected in data. Usually, it is based on some idea. Suppose we have a hypothesis - invest more if open price is low. A hypothesis can be expressed through the formula:
+Предположим, у нас есть гипотеза - нужно вкладывать больше, если цена
+*open* низкая. Гипотеза может быть выражена формулой:
 
-\\\[ \frac{1}{open} \\\]
+$$\label{alpha1}
+    \frac{1}{\textbf{open}},$$
 
-Hereinafter we will stand bold symbols for vectors. We can receive a matrix form of the algorithm by applying formula (2) to the table 1:
+Здесь и далее мы будем выделять вектора жирным шрифтом. Если применить эту
+формулу к таблице 1, получится матричный вид алгоритма:
 
 | date         | AAPL          | GOOG          | TSLA          |
 |:------------:| -------------:| -------------:| -------------:|
@@ -25,13 +41,11 @@ Hereinafter we will stand bold symbols for vectors. We can receive a matrix form
 | Mar 03, 2020 | 0.00329304837 | 0.00071458175 | 0.00124223602 |
 | Mar 04, 2020 | 0.00337336391 | 0.00073571065 | 0.00130896905 |
 
- _Table 2: Matrix form of the algorithm._
+_Таблица 2. Матричный вид алгоритма._
 
-
-Capital is distributed in proportion to the values of the matrix. To receive the shares of capital invested in each stock,
- the matrix (table 2) must be normalized ( \\\( l_1 \\\) norm) to one for each day:
-
-
+Капитал распределяется пропорционально значениям матрицы. Чтобы получить
+доли капитала, вложенного в каждый инструмент, матрица (таблица 2) должна быть 
+нормализована (норма \\\(l_1\\\)) на единицу для каждого дня:
 
 | date         | AAPL   | GOOG   | TSLA   |
 |:------------:| ------:| ------:| ------:|
@@ -39,8 +53,9 @@ Capital is distributed in proportion to the values of the matrix. To receive the
 | Mar 03, 2020 | 0.6273 | 0.1361 | 0.2366 |
 | Mar 04, 2020 | 0.6226 | 0.1358 | 0.2416 |
 
-_Table 3: Final weights of the algorithm._
+_Таблицы 3. Веса алгоритма (__weights__)._
 
-Thus, $1M·0.6228 = $622,800 was allocated for AAPL on Mar 02, 2020; GOOG and TSLA received $130,100 and $247,200 
-correspondingly. Matrix values (3) are called weights of the algorithm.
+Таким образом, 2 марта 2020 года для AAPL было выделено
+\\\( 1M \cdot 0.6228 = $622,800; \\\) GOOG и TSLA получили $130,100 и
+$247,200  соответственно. Матричные значения (Таблица 3) называются весами (**weights**) алгоритма.
 
