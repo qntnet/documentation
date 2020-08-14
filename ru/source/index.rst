@@ -59,6 +59,6 @@ Indices and tables
 
 
 ..
-    Leep it! Math module requires it.
+    Keep it! Math module requires it.
 
 :math:`\ `
