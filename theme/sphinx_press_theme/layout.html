@@ -11,7 +11,7 @@
     <meta name="description" content="{{ description }}">
     #}
     {%- block css %}
-    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1)}}">
+    <!--    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1)}}">-->
     <link rel="stylesheet" href="{{ pathto('_static/theme.css', 1)}}">
     <link rel="stylesheet" href="{{ pathto('_static/sphinx_press_theme.css', 1)}}">
     {%- for css in css_files %}
@@ -48,6 +48,23 @@
 
     {%- include "util/linktags.html" %}
     {%- block extrahead %} {% endblock %}
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" href="/favicons/preview.png" type="image/png">
+    <link rel="image_src" href="/favicons/preview.png"/>
+    <meta property="og:image" content="https://sun9-16.userapi.com/c855036/v855036190/1cff94/xQzlQlewERs.jpg"/>
+    <meta property="og:image:secure_url"
+          content="https://sun9-16.userapi.com/c855036/v855036190/1cff94/xQzlQlewERs.jpg"/>
+    <meta property="og:image:type" content="image/jpeg"/>
+    <meta property="og:image:width" content="700"/>
+    <meta property="og:image:height" content="500"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="CACHE-CONTROL" content="no-cache"/>
 </head>
 
 <body>
@@ -71,11 +88,11 @@
         {% block sidebars %}
         {%- include "util/sidetoc.html" %}
         {% endblock %}
-<!--        {%- if sidebars != None %}-->
-<!--        {%- for sidebartemplate in sidebars %}-->
-<!--        {%- include sidebartemplate %}-->
-<!--        {%- endfor %}-->
-<!--        {%- endif %}-->
+        <!--        {%- if sidebars != None %}-->
+        <!--        {%- for sidebartemplate in sidebars %}-->
+        <!--        {%- include sidebartemplate %}-->
+        <!--        {%- endfor %}-->
+        <!--        {%- endif %}-->
     </sidebar>
     {%- endblock %}
 

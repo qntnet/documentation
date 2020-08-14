@@ -24,7 +24,7 @@
 
 ### Исторические финансовые данные 
 Данные цен компаний Google и Apple за последние 4*365 дней, отсортированные в хронологическом порядке
-```js
+```python
 # Import quantnet libraries.
 import qnt.data as qndata
 import datetime as dt
@@ -40,7 +40,7 @@ data = qndata.load_data(
 
 
 
-```js
+```python
 data.sel(field="open").to_pandas().tail()
 ```
 

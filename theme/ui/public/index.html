@@ -321,33 +321,402 @@ data = qndata.load_data(
                                             title="Vue.js курсы на Vue Mastery">Введение в курс Vue</a>.</p></div>
                         </div>
                     </div>
-                </div>
-                <div class="page-nav">
-                    <div class="inner">
-                        <ul class="page-nav">
-                            <li class="prev"><a href="index.html" title="previous chapter">← &lt;no title&gt;</a></li>
-                            <li class="next"><a href="index_3.html" title="next chapter">Быстрый старт →</a></li>
-                        </ul>
-                        <about-feedback></about-feedback>
-<!--                        <div role="contentinfo" class="footer">-->
-<!--                            © Copyright 2020, quantnet.-->
-<!--                            <br>-->
-<!--                            Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.0+ with <a-->
-<!--                                href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.-->
-<!--                        </div>-->
+                    <div id="id1" class="section"><h1>Создаем первую стратегию<a href="#id1"
+                                                                                 title="Permalink to this headline"
+                                                                                 class="headerlink">¶</a></h1>
+                        <p>Ниже приведены основные шаги, которые могут быть включены в каждую стратегию.</p>
+                        <div id="id2" class="section"><h2>1. Подготовка<a href="#id2" title="Permalink to this headline"
+                                                                          class="headerlink">¶</a></h2>
+                            <p>Сначала нужно подготовить рабочее пространство - загрузить данные и библиотеки</p>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span
+                                        class="c1"># Import basic libraries.</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="kn">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Import quantnet libraries.</span>
+<span class="kn">import</span> <span class="nn">qnt.data</span>    <span class="kn">as</span> <span
+                                            class="nn">qndata</span>
+<span class="kn">import</span> <span class="nn">qnt.stepper</span> <span class="kn">as</span> <span
+                                            class="nn">qnstepper</span>
+<span class="kn">import</span> <span class="nn">qnt.stats</span>   <span class="kn">as</span> <span
+                                            class="nn">qnstats</span>
+<span class="kn">import</span> <span class="nn">qnt.graph</span>   <span class="kn">as</span> <span
+                                            class="nn">qngraph</span>
+<span class="kn">import</span> <span class="nn">qnt.forward_looking</span> <span class="kn">as</span> <span class="nn">qnfl</span> <span
+                                            class="c1"># forward looking checking</span>
+</pre>
+                                </div>
+                            </div>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span class="c1"># load historical data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">qndata</span><span class="o">.</span><span
+                                            class="n">load_data</span><span class="p">(</span><span
+                                            class="n">min_date</span> <span class="o">=</span> <span class="s2">"2017-01-01"</span><span
+                                            class="p">,</span>
+                        <span class="n">max_date</span> <span class="o">=</span> <span class="bp">None</span><span
+                                            class="p">,</span>
+                        <span class="n">dims</span>     <span class="o">=</span> <span class="p">(</span><span
+                                            class="s2">"time"</span><span class="p">,</span> <span
+                                            class="s2">"field"</span><span class="p">,</span> <span
+                                            class="s2">"asset"</span><span class="p">))</span>
+</pre>
+                                </div>
+                            </div>
+                            <p>“ data “- это xarray.DataArray, который содержит исторические данные. Например,
+                                мы хотим получить цены открытия и закрытия акций Apple:</p>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span class="n">apple_close</span> <span
+                                        class="o">=</span> <span class="n">data</span><span class="o">.</span><span
+                                        class="n">loc</span><span class="p">[::,</span> <span
+                                        class="s2">"close"</span><span class="p">,</span> <span
+                                        class="s2">"NASDAQ:AAPL"</span><span class="p">]</span>
+<span class="n">apple_open</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span
+                                            class="n">loc</span><span class="p">[::,</span> <span
+                                            class="s2">"open"</span><span class="p">,</span> <span class="s2">"NASDAQ:AAPL"</span><span
+                                            class="p">]</span>
+
+<span class="c1"># you can also work with pandas:</span>
+<span class="c1"># apple_close = data.loc[::, "close", :].to_pandas()["NASDAQ:AAPL"]</span>
+</pre>
+                                </div>
+                            </div>
+                            <p>Таблицу доступных данных можно посмотреть здесь. Некоторые другие данные:</p>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span class="n">all_close</span> <span
+                                        class="o">=</span> <span class="n">data</span><span class="o">.</span><span
+                                        class="n">loc</span><span class="p">[::,</span> <span
+                                        class="s2">"close"</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">all_open</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span
+                                            class="n">loc</span><span class="p">[::,</span> <span
+                                            class="s2">"open"</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="c1"># boolean parameter. True if the stock is in top 500 most liquid stocks over the last month</span>
+<span class="n">liquid</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span
+                                            class="n">loc</span><span class="p">[::,</span> <span
+                                            class="s2">"is_liquid"</span><span class="p">,</span> <span
+                                            class="p">:]</span>
+</pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="id3" class="section"><h2>2. Распределение весов<a href="#id3"
+                                                                                   title="Permalink to this headline"
+                                                                                   class="headerlink">¶</a></h2>
+                            <p>Предположим, у нас есть торговая идея - инвестировать больше, если цена открытия низкая.
+                                Эта гипотеза может быть выражена через формулу:</p>
+                            <p><span class="MathJax_Preview" style="color: inherit;"></span>
+                            <div class="MathJax_Display" style="text-align: center;"><span class="MathJax"
+                                                                                           id="MathJax-Element-1-Frame"
+                                                                                           tabindex="0"
+                                                                                           style="text-align: center; position: relative;"
+                                                                                           data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;><mfrac><mn>1</mn><mrow><mi>o</mi><mi>p</mi><mi>e</mi><mi>n</mi></mrow></mfrac></math>"
+                                                                                           role="presentation"><nobr
+                                    aria-hidden="true"><span class="math" id="MathJax-Span-1"
+                                                             style="width: 2.871em; display: inline-block;"><span
+                                    style="display: inline-block; position: relative; width: 2.359em; height: 0px; font-size: 122%;"><span
+                                    style="position: absolute; clip: rect(0.72em, 1002.36em, 3.23em, -999.997em); top: -2.2em; left: 0em;"><span
+                                    class="mrow" id="MathJax-Span-2"><span class="mfrac" id="MathJax-Span-3"><span
+                                    style="display: inline-block; position: relative; width: 2.154em; height: 0px; margin-right: 0.105em; margin-left: 0.105em;"><span
+                                    style="position: absolute; clip: rect(3.179em, 1000.41em, 4.152em, -999.997em); top: -4.659em; left: 50%; margin-left: -0.254em;"><span
+                                    class="mn" id="MathJax-Span-4" style="font-family: MathJax_Main;">1</span><span
+                                    style="display: inline-block; width: 0px; height: 3.998em;"></span></span><span
+                                    style="position: absolute; clip: rect(3.384em, 1002.05em, 4.357em, -999.997em); top: -3.327em; left: 50%; margin-left: -1.022em;"><span
+                                    class="mrow" id="MathJax-Span-5"><span class="mi" id="MathJax-Span-6"
+                                                                           style="font-family: MathJax_Math-italic;">o</span><span
+                                    class="mi" id="MathJax-Span-7"
+                                    style="font-family: MathJax_Math-italic;">p</span><span class="mi"
+                                                                                            id="MathJax-Span-8"
+                                                                                            style="font-family: MathJax_Math-italic;">e</span><span
+                                    class="mi" id="MathJax-Span-9"
+                                    style="font-family: MathJax_Math-italic;">n</span></span><span
+                                    style="display: inline-block; width: 0px; height: 3.998em;"></span></span><span
+                                    style="position: absolute; clip: rect(0.873em, 1002.15em, 1.232em, -999.997em); top: -1.278em; left: 0em;"><span
+                                    style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 1.3px solid; width: 2.154em; height: 0px;"></span><span
+                                    style="display: inline-block; width: 0px; height: 1.078em;"></span></span></span></span></span><span
+                                    style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span
+                                    style="display: inline-block; overflow: hidden; vertical-align: -1.122em; border-left: 0px solid; width: 0px; height: 2.816em;"></span></span></nobr><span
+                                    class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math
+                                    xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mfrac><mn>1</mn><mrow><mi>o</mi><mi>p</mi><mi>e</mi><mi>n</mi></mrow></mfrac></math></span></span>
+                            </div>
+                            <script type="math/tex; mode=display" id="MathJax-Element-1">\frac{1}{open} </script>
+                            </p> <p>Мы можем распределить капитал, присваивая веса инструментам портфеля. (читать
+                                подробнее <a href="#" class="reference external">здесь</a>):</p>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span
+                                        class="mi">1</span><span class="o">/</span><span class="n">all_open</span>
+</pre>
+                                </div>
+                            </div>
+                            <p>Вы можете реализовать и протестировать любую идею, какую захотите. Некоторые другие
+                                примеры:</p>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span class="c1"># buy all positions: weights = all_open/all_open</span>
+<span class="c1"># sell all positions: weights = -all_open/all_open</span>
+<span class="c1"># the more price change, the more we buy = (all_close - all_open)/all_open</span>
+</pre>
+                                </div>
+                            </div>
+                            <p>Обратите внимание, что мы торгуем только ликвидными акциями. Можно сформировать выходные
+                                веса:</p>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span class="n">output</span> <span
+                                        class="o">=</span> <span class="n">weights</span><span class="o">*</span><span
+                                        class="n">liquid</span>
+
+
+<span class="c1"># If you worked with pandas and weigths is pandas.Dataframe:</span>
+<span class="c1"># output = xr.DataArray(weights.values, dims = ["time","asset"], coords= {"time":weights.index,"asset":weights.columns} )</span>
+</pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="id4" class="section"><h2>3. Оценка эффективности<a href="#id4"
+                                                                                    title="Permalink to this headline"
+                                                                                    class="headerlink">¶</a></h2>
+                            <p>После того, как мы построили алгоритм, нам нужно его оценить. Для начала нам нужно
+                                рассчитать статистику.</p>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span class="c1"># calc_stat calculate statistic on a relevenat time frame window</span>
+<span class="n">stat</span> <span class="o">=</span> <span class="n">qnstats</span><span class="o">.</span><span
+                                            class="n">calc_stat</span><span class="p">(</span><span
+                                            class="n">data</span><span class="p">,</span> <span
+                                            class="n">output</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span
+                                            class="n">to_pandas</span><span class="p">()</span><span
+                                            class="o">.</span><span class="n">tail</span><span class="p">())</span>
+</pre>
+                                </div>
+                            </div>
+                            <p>Результаты алгоритма, рассчитанные на исторических данных,
+                                обычно представлены на <a href="#" class="reference external">графике прибыли
+                                    (equity)</a> чтобы понять поведение совокупной прибыли:</p>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span class="c1"># show plot with profit and losses:</span>
+<span class="n">performance</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span
+                                            class="n">to_pandas</span><span class="p">()[</span><span class="s2">"equity"</span><span
+                                            class="p">]</span>
+<span class="n">qngraph</span><span class="o">.</span><span class="n">make_plot_filled</span><span
+                                            class="p">(</span><span class="n">performance</span><span class="o">.</span><span
+                                            class="n">index</span><span class="p">,</span> <span
+                                            class="n">performance</span><span class="p">,</span> <span
+                                            class="n">name</span><span class="o">=</span><span
+                                            class="s2">"PnL (Equity)"</span><span class="p">,</span> <span class="nb">type</span><span
+                                            class="o">=</span><span class="s2">"log"</span><span class="p">)</span>
+</pre>
+                                </div>
+                            </div>
+                            <p><img alt="Equity" src="../../_images/equity.png"></p>
+                            <p>Мы используем набор <a href="#" class="reference external">критериев</a> для оценки
+                                производительности.
+                                Вы можете отправить свой алгоритм и принять участие в соревнованиях, если он пройдет все
+                                <a href="#" class="reference external">фильтры</a>.</p>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span class="c1"># Actual sharpe on a relevant timeframe. </span>
+<span class="c1"># According to the rules the Sharpe ratio must be greater than 1:</span>
+<span class="n">display</span><span class="p">(</span><span class="n">stat</span><span class="p">[</span><span
+                                            class="o">-</span><span class="mi">1</span><span class="p">:]</span><span
+                                            class="o">.</span><span class="n">sel</span><span class="p">(</span><span
+                                            class="n">field</span> <span class="o">=</span> <span
+                                            class="p">[</span><span class="s2">"sharpe_ratio"</span><span
+                                            class="p">])</span><span class="o">.</span><span
+                                            class="n">transpose</span><span class="p">()</span><span
+                                            class="o">.</span><span class="n">to_pandas</span><span class="p">())</span>
+
+<span class="c1"># According to the rules the correlation with other strategies must be less than 90%:</span>
+<span class="n">qnstats</span><span class="o">.</span><span class="n">print_correlation</span><span
+                                            class="p">(</span><span class="n">output</span><span
+                                            class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="id5" class="section"><h2>4. Отправка стратегии<a href="#id5"
+                                                                                  title="Permalink to this headline"
+                                                                                  class="headerlink">¶</a></h2>
+                            <p>Если вы достаточно удовлетворены своим алгоритмом и он соответствует всем требованиям, вы
+                                можете отправить его.</p>
+                            <div class="highlight-python notranslate">
+                                <div class="highlight"><pre><span></span><span
+                                        class="c1"># Finally, write the output</span>
+<span class="n">qnstepper</span><span class="o">.</span><span class="n">write_output</span><span class="p">(</span><span
+                                            class="n">output</span><span class="p">)</span>
+</pre>
+                                </div>
+                            </div>
+                            <p>На этом этапе код готов к отправке. Просто нажмите на кнопку отправки на странице вашего
+                                аккаунта,
+                                и мы оценим вашу стратегию на наших серверах!</p>
+                            <p><a href="#" class="reference external">СОЗДАТЬ СТРАТЕГИЮ</a></p>
+                            <p>Не забудьте <a href="#" class="reference external">зарегистрироваться на платформе</a>
+                            </p></div>
+                    </div>
+                    <div id="examples" class="section"><h1>Examples?<a href="#examples"
+                                                                       title="Permalink to this headline"
+                                                                       class="headerlink">¶</a></h1>
+                        <p><a href="https://vueschool.io/lessons/vuejs-conditionals?friend=vuejs" target="_blank"
+                              rel="sponsored noopener"
+                              title="Узнайте, как работать с условной отрисовкой в бесплатном уроке Vue School">Узнайте,
+                            как работать с условной отрисовкой в бесплатном уроке Vue School</a></p>
+                        <div id="v-if" class="section"><h2><code class="docutils literal notranslate"><span class="pre">v-if</span></code><a
+                                href="#v-if" title="Permalink to this headline" class="headerlink">¶</a></h2>
+                            <p>Директива <code class="docutils literal notranslate"><span class="pre">v-if</span></code>
+                                используется для рендеринга блока по условию. Блок будет отображаться только в том
+                                случае, если выражение директивы возвращает значение, приводимое к true.</p>
+                            <p>Также можно добавить блок «иначе», используя директиву <code
+                                    class="docutils literal notranslate"><span class="pre">v-else</span></code>:</p>
+                            <div id="v-if-template" class="section"><h3>Условные группы с использованием <code
+                                    class="docutils literal notranslate"><span class="pre">v-if</span></code> и <code
+                                    class="docutils literal notranslate"><span
+                                    class="pre">&lt;template&gt;</span></code><a href="#v-if-template"
+                                                                                 title="Permalink to this headline"
+                                                                                 class="headerlink">¶</a></h3>
+                                <p>Поскольку <code class="docutils literal notranslate"><span
+                                        class="pre">v-if</span></code> — директива, она должна быть указана в одном
+                                    конкретном теге. Но что если мы хотим управлять отображением сразу нескольких
+                                    элементов? В таком случае можно применить <code
+                                            class="docutils literal notranslate"><span class="pre">v-if</span></code> к
+                                    псевдоэлементу <code class="docutils literal notranslate"><span class="pre">&lt;template&gt;</span></code>,
+                                    который служит невидимой обёрткой и сам в результатах отрисовки не появляется.</p>
+                            </div>
+                            <div id="v-else" class="section"><h3><code class="docutils literal notranslate"><span
+                                    class="pre">v-else</span></code><a href="#v-else" title="Permalink to this headline"
+                                                                       class="headerlink">¶</a></h3>
+                                <p>Для указания блока «иначе» для <code class="docutils literal notranslate"><span
+                                        class="pre">v-if</span></code> можно использовать директиву <code
+                                        class="docutils literal notranslate"><span class="pre">v-else</span></code>:</p>
+                                <p>Элемент с директивой <code class="docutils literal notranslate"><span class="pre">v-else</span></code>
+                                    должен следовать сразу за элементом с директивой <code
+                                            class="docutils literal notranslate"><span class="pre">v-if</span></code>
+                                    или <code class="docutils literal notranslate"><span
+                                            class="pre">v-else-if</span></code>, иначе он не будет распознан.</p></div>
+                            <div id="v-else-if" class="section"><h3><code class="docutils literal notranslate"><span
+                                    class="pre">v-else-if</span></code><a href="#v-else-if"
+                                                                          title="Permalink to this headline"
+                                                                          class="headerlink">¶</a></h3>
+                                <blockquote>
+                                    <div><p style="
+    margin-top: -3.6rem;
+    padding-top: -0.4rem;
+">Добавлено в версии 2.1.0+</p></div>
+                                </blockquote>
+                                <p>Как следует из названия, <code class="docutils literal notranslate"><span
+                                        class="pre">v-else-if</span></code> служит в качестве блока «else if» для
+                                    директивы <code class="docutils literal notranslate"><span
+                                            class="pre">v-if</span></code>. Можно объединять эти директивы в длинные
+                                    цепочки:</p>
+                                <p>Как и <code class="docutils literal notranslate"><span
+                                        class="pre">v-else</span></code>, <code
+                                        class="docutils literal notranslate"><span class="pre">v-else-if</span></code>
+                                    должен следовать сразу за элементом с <code
+                                            class="docutils literal notranslate"><span class="pre">v-if</span></code>
+                                    или <code class="docutils literal notranslate"><span
+                                            class="pre">v-else-if</span></code>.</p></div>
+                            <div id="key" class="section"><h3>Управление повторным использованием элементов при помощи
+                                <code class="docutils literal notranslate"><span class="pre">key</span></code><a
+                                        href="#key" title="Permalink to this headline" class="headerlink">¶</a></h3>
+                                <p>Vue старается управлять элементами DOM настолько эффективно, насколько это возможно,
+                                    зачастую переиспользуя их вместо того чтобы создавать заново. Кроме улучшения
+                                    производительности, у этого подхода есть и другие преимущества. Например, если вы
+                                    позволяете пользователю переключаться между несколькими возможными типами
+                                    логина:</p>
+                                <p>Изменение <code class="docutils literal notranslate"><span
+                                        class="pre">loginType</span></code> в коде выше не сотрёт то, что пользователь
+                                    ввёл в поле. Оба шаблона используют одни и те же элементы, поэтому <code
+                                            class="docutils literal notranslate"><span class="pre">&lt;input&gt;</span></code>
+                                    не заменяется — только его <code class="docutils literal notranslate"><span
+                                            class="pre">placeholder</span></code>.</p>
+                                <p>Попробуйте сами, введя что-нибудь в поле ввода и нажав на кнопку переключения:</p>
+                                <p>Иногда такое поведение нежелательно, поэтому Vue можно явно указать: «эти элементы
+                                    должны быть полностью независимы, не надо их переиспользовать». Для этого всего лишь
+                                    нужно указать уникальное значение ключа <code
+                                            class="docutils literal notranslate"><span class="pre">key</span></code>:
+                                </p>
+                                <p>Теперь эти поля ввода будут отрисовываться заново при каждом переключении:</p>
+                                <p>Обратите внимание, элементы <code class="docutils literal notranslate"><span
+                                        class="pre">&lt;label&gt;</span></code> всё ещё эффективно переиспользуются,
+                                    поскольку для них <code class="docutils literal notranslate"><span
+                                            class="pre">key</span></code> не указаны.</p></div>
+                        </div>
+                        <div id="v-show" class="section"><h2><code class="docutils literal notranslate"><span
+                                class="pre">v-show</span></code><a href="#v-show" title="Permalink to this headline"
+                                                                   class="headerlink">¶</a></h2>
+                            <p>Ещё одну возможность условного отображения предоставляет директива <code
+                                    class="docutils literal notranslate"><span class="pre">v-show</span></code>.
+                                Используется она так же:</p>
+                            <p>Разница в том, что элемент с <code class="docutils literal notranslate"><span
+                                    class="pre">v-show</span></code> будет всегда оставаться в DOM, а изменяться будет
+                                лишь свойство <code class="docutils literal notranslate"><span
+                                        class="pre">display</span></code> в его параметрах CSS.</p>
+                            <p class="tip">`v-show` не работает на элементе `` и не работает с `v-else`.
+                                <div id="v-if-v-show" class="section"><h2><code
+                                        class="docutils literal notranslate"><span class="pre">v-if</span></code> в
+                                    сравнении с <code class="docutils literal notranslate"><span
+                                            class="pre">v-show</span></code><a href="#v-if-v-show"
+                                                                               title="Permalink to this headline"
+                                                                               class="headerlink">¶</a></h2>
+                            <p><code class="docutils literal notranslate"><span class="pre">v-if</span></code>
+                                производит «настоящую» условную отрисовку, удостоверяясь что подписчики событий и
+                                дочерние компоненты внутри блока должным образом уничтожаются и воссоздаются при
+                                изменении истинности управляющего условия.</p>
+                            <p><code class="docutils literal notranslate"><span class="pre">v-if</span></code> <strong>ленивый</strong>:
+                                если условие ложно на момент первоначальной отрисовки, он не произведёт никаких действий
+                                — условный блок не будет отображён, пока условие не станет истинным.</p>
+                            <p><code class="docutils literal notranslate"><span class="pre">v-show</span></code>,
+                                напротив, куда проще: элемент всегда присутствует в DOM, и только CSS-свойство
+                                переключается в зависимости от условия.</p>
+                            <p>В целом, у <code class="docutils literal notranslate"><span
+                                    class="pre">v-if</span></code> выше затраты на переключения, а у <code
+                                    class="docutils literal notranslate"><span class="pre">v-show</span></code> больше
+                                затрат на первичную отрисовку. Так что если вы предполагаете, что переключения будут
+                                частыми, используйте <code class="docutils literal notranslate"><span
+                                        class="pre">v-show</span></code>, если же редкими или маловероятными — <code
+                                        class="docutils literal notranslate"><span class="pre">v-if</span></code>.</p>
+                        </div>
+                        <div id="v-if-v-for" class="section"><h2><code class="docutils literal notranslate"><span
+                                class="pre">v-if</span></code> вместе с <code class="docutils literal notranslate"><span
+                                class="pre">v-for</span></code><a href="#v-if-v-for" title="Permalink to this headline"
+                                                                  class="headerlink">¶</a></h2>
+                            <p class="tip">Совместное использование `v-if` и `v-for` **не рекомендуется**. Подробнее
+                                можно изучить в разделе
+                                [рекомендаций](/v2/style-guide/#Избегайте-использования-v-if-с-v-for-важно).</p>
+                            <p>При совместном использовании <code class="docutils literal notranslate"><span
+                                    class="pre">v-if</span></code> и <code class="docutils literal notranslate"><span
+                                    class="pre">v-for</span></code>, директива <code
+                                    class="docutils literal notranslate"><span class="pre">v-for</span></code> имеет
+                                более высокий приоритет. Подробнее на странице <a href="list.html#v-for-%D0%B8-v-if"
+                                                                                  class="reference external">отрисовки
+                                    списков</a>.</p></div>
                     </div>
                 </div>
             </div>
-            <!--                <h1 id="my-page-content">My page content-->
-            <!--                    <a class="headerlink" href="my-page-content">¶</a>-->
-            <!--                </h1>-->
-
-            <!--                <div class="section">-->
-            <!--                    <p>section 2</p>-->
-            <!--                </div>-->
-            <footer-quantnet></footer-quantnet>
-        </page>
+            <div class="page-nav">
+                <div class="inner">
+                    <ul class="page-nav">
+                        <li class="prev"><a href="index.html" title="previous chapter">← &lt;no title&gt;</a></li>
+                        <li class="next"><a href="index_3.html" title="next chapter">Быстрый старт →</a></li>
+                    </ul>
+                    <about-feedback></about-feedback>
+                    <!--                        <div role="contentinfo" class="footer">-->
+                    <!--                            © Copyright 2020, quantnet.-->
+                    <!--                            <br>-->
+                    <!--                            Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.0+ with <a-->
+                    <!--                                href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.-->
+                    <!--                        </div>-->
+                </div>
+            </div>
     </div>
+    <!--                <h1 id="my-page-content">My page content-->
+    <!--                    <a class="headerlink" href="my-page-content">¶</a>-->
+    <!--                </h1>-->
+
+    <!--                <div class="section">-->
+    <!--                    <p>section 2</p>-->
+    <!--                </div>-->
+    <footer-quantnet></footer-quantnet>
+    </page>
+</div>
 
 </div>
 <!-- built files will be auto injected -->
