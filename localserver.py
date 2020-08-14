@@ -13,6 +13,8 @@ request_mapping = {
 
 class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
     def translate_path(self, path):
+        if '?' in path:
+            path = path.split('?')[0]
         for k in request_mapping.keys():
             if path.startswith(k):
                 return request_mapping[k] + path[len(k):]

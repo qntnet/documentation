@@ -26,17 +26,21 @@ RUN conda install -y \
     'conda-forge::sphinx-markdown-tables' \
      && conda clean -tipsy && conda clean --all --yes
 
-RUN  apt update && apt -y install curl    && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+RUN apt update && apt -y install curl \
+    && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs \
+    && apt -y remove curl \
+    && apt -y autoremove \
     && apt autoclean \
     && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log
 
+#COPY theme /opt/theme
+#RUN cd /opt/theme/ui   \
+#    && npm install \
+#    && npm run build \
+#    && cd .. && pip3 install -e .
 
-COPY theme /opt/theme
-RUN cd /opt/theme/ui   \
-    && npm install \
-    && npm run build \
-    && pip3 install -e ..
+RUN pip install sphinx_press_theme
 
 COPY en /opt/en
 RUN cd /opt/en && make html
