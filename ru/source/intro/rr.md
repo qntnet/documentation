@@ -27,8 +27,10 @@ _Рис. 1_
 изменился капитал. Для i-ого дня мы вводим относительную доходность (rr)
 в долях единицы:
 
-$$\label{equity1}
-    \text{rr}[i] = \frac{\text{equity}[i]}{\text{equity}[i-1]} - 1,$$
+```math
+\label{equity1}
+    \text{rr}[i] = \frac{\text{equity}[i]}{\text{equity}[i-1]} - 1,
+```
 
 ## Детали
 
@@ -37,12 +39,14 @@ PnL). Скажем, мы распределяем наш капитал проп
 *weights* для i-ого дня. Таким образом, мы покупаем акции по цене *open*
 и получаем следующие позиции:
 
-$$\label{position}
-    \textbf{pos}[i] = \left( \textbf{weights}[i]\cdot\text{equity}[i] \right)/\textbf{open}[i],$$
+```math
+\label{position}
+    \textbf{pos}[i] = \left( \textbf{weights}[i]\cdot\text{equity}[i] \right)/\textbf{open}[i],
+```
 
 где переменные, выделенные жирным шрифтом, это вектора с весами для
 каждого инструмента в портфеле; деление производится поэлементно. На
-следующий день алгоритм сгенерирует новый вектор \\\( \textit{weigths}[i + 1] \\\),
+следующий день алгоритм сгенерирует новый вектор ``$` \textit{weigths}[i + 1] `$``,
 который перераспределит наш капитал на новые
 позиции. Перераспределение инструментов портфеля приводит к потерям
 капитала, связанным, главным образом, с комиссией брокера и
@@ -61,20 +65,29 @@ $$\label{position}
 акций по определенной (изменяющейся) цене. Мы вычисляем проскальзывание
 (*slippage*) по следующей формуле:
 
-$$\label{slappage}
-    \text{slippage}[i] = abs(\textbf{pos}[i] - \textbf{pos}[i-1])\cdot \textbf{ATR}(14) \cdot 0.05,$$
-где \\( \textbf{ATR}(14) \\) - индикатор волатильности рынка. Индикатор
-Average True Range (\\( \textbf{ATR}(N) \\)) представляет собой скользящую
+```math
+\label{slappage}
+    \text{slippage}[i] = abs(\textbf{pos}[i] - \textbf{pos}[i-1])\cdot \textbf{ATR}(14) \cdot 0.05,
+```
+где ``$` \textbf{ATR}(14) `$`` - индикатор волатильности рынка. Индикатор
+Average True Range (``$` \textbf{ATR}(N) `$``) представляет собой скользящую
 среднюю (MA) значений истинного диапазона (**TR**) за N дней:
 
-$$\begin{gathered}
+```math
+\begin{gathered}
 \label{ATR}
-    \textbf{TR}[i] = max(\textbf{high}[i] - \textbf{low}[i]; \textbf{high}[i] - \textbf{close}[i-1];\\  \textbf{close}[i-1] - \textbf{low}[i]), \end{gathered}$$
+    \textbf{TR}[i] = max(
+\textbf{high}[i] - \textbf{low}[i]; \textbf{high}[i] - \textbf{close}[i-1]; \textbf{close}[i-1] - \textbf{low}[i]), \end{gathered}
+```
 
-$$\label{ATR2}
-    \textbf{ATR}(N) = MA(\textbf{TR},N).$$
+```math
+\label{ATR2}
+    \textbf{ATR}(N) = MA(\textbf{TR},N).
+```
 
 Теперь мы можем ввести формулу расчета капитала для i-ого дня:
-$$\begin{gathered}
+```math
+\begin{gathered}
     \text{equity}[i] = \text{equity}[i - 1] + (\textbf{open}[i] - \textbf{close}[i-1]) \cdot \\ \textbf{pos}[i-1] + (\textbf{close}[i] - \textbf{open}[i]) \cdot \textbf{pos}[i] - \text{slippage}[i]
-    \label{equity}\end{gathered}$$
+    \label{equity}\end{gathered}
+```

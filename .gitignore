@@ -2,3 +2,4 @@
 *.iml
 en/build
 ru/build
+/ru/events.log
