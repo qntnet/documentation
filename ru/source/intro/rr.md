@@ -86,6 +86,7 @@ Average True Range (``$` \textbf{ATR}(N) `$``) представляет собо
 ```
 
 Теперь мы можем ввести формулу расчета капитала для i-ого дня:
+
 ```math
 \begin{gathered}
     \text{equity}[i] = \text{equity}[i - 1] + (\textbf{open}[i] - \textbf{close}[i-1]) \cdot \\ \textbf{pos}[i-1] + (\textbf{close}[i] - \textbf{open}[i]) \cdot \textbf{pos}[i] - \text{slippage}[i]
