@@ -1,4 +1,7 @@
 .git
 .cache
-theme/ui/dist/*
-theme/ui/node_modules/*
+/ru/build
+/en/build
+theme/ui/dist
+theme/ui/node_modules
+/ru/events.log
