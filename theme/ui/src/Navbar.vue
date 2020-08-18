@@ -5,7 +5,7 @@
       <nav class="dropdownmenu">
         <ul>
           <li><a class="nav-link" target="_self" href="/contest">About</a></li>
-          <li><a class="nav-link" target="_self" href="/learn">Learn</a></li>
+          <li><a class="nav-link" target="_self" :href=urlDocumentation>Documentation</a></li>
           <li><a class="nav-link" target="_self" href="/events">Events</a></li>
           <li><a class="nav-link" rel="noopener noreferrer" href="/contacts" target="_self">Contact</a></li>
           <li><a class="nav-link" target="_self" href="/faq">FAQ</a></li>
@@ -18,7 +18,7 @@
           <nav>
             <ul>
               <li><a class="nav-link" href="/contest" target="_self">About</a></li>
-              <li><a class="nav-link" href="/learn" target="_self">Learn</a></li>
+              <li><a class="nav-link" :href=urlDocumentation target="_self">Documentation</a></li>
               <li><a class="nav-link" href="/events" target="_self">Events</a></li>
               <li><a class="nav-link" rel="noopener noreferrer" href="/contacts" target="_self">Contact</a></li>
               <li><a class="nav-link" href="/faq" target="_self">FAQ</a></li>
@@ -56,7 +56,7 @@
       <nav class="dropdownmenu">
         <ul>
           <li><a class="nav-link" target="_self" href="/contest">О нас</a></li>
-          <li><a class="nav-link" target="_self" href="/learn">Обучение</a></li>
+          <li><a class="nav-link" target="_self" :href=urlDocumentation>Документация</a></li>
           <li><a class="nav-link" target="_self" href="/events">Мероприятия</a></li>
           <li><a class="nav-link" rel="noopener noreferrer" href="/contacts" target="_self">Контакты</a></li>
           <li><a class="nav-link" target="_self" href="/faq">FAQ</a></li>
@@ -69,7 +69,7 @@
           <nav>
             <ul>
               <li><a class="nav-link" href="/contest" target="_self">О нас</a></li>
-              <li><a class="nav-link" href="/learn" target="_self">Обучение</a></li>
+              <li><a class="nav-link" :href=urlDocumentation target="_self">Документация</a></li>
               <li><a class="nav-link" href="/events" target="_self">Мероприятия</a></li>
               <li><a class="nav-link" rel="noopener noreferrer" href="/contacts" target="_self">Контакты</a></li>
               <li><a class="nav-link" href="/faq" target="_self">FAQ</a></li>
@@ -145,6 +145,10 @@ export default {
     },
     urlEN() {
       return LocaleHelper.getUrlEN();
+    },
+    urlDocumentation() {
+      const currentLocale = LocaleHelper.getCurrentLocale();
+      return `/documentation/${currentLocale}/`;
     }
   }
 }
