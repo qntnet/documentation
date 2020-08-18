@@ -1,3 +1,6 @@
+Оглавление
+==================
+
 .. examplecode documentation master file, created by
    sphinx-quickstart on Mon Mar  6 11:10:24 2017.
    You can adapt this file completely to your liking, but it should at least
@@ -5,7 +8,7 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Начало работы:
+   :caption: Начало работы
 
    getting-started/about.md
    getting-started/first/first.md
@@ -18,7 +21,7 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Введение:
+   :caption: Введение
 
    intro/algo.md
    intro/basic.md
@@ -27,7 +30,7 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Качество алгоритма:
+   :caption: Качество алгоритма
 
    /quality/rules.md
    /quality/sharpe.md
@@ -37,25 +40,18 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Доступные данные:
+   :caption: Доступные данные
 
    /data/market.md
    /data/fundamental.md
 
 .. toctree::
    :maxdepth: 2
-   :caption: Как улучшить алгоритм:
+   :caption: Как улучшить алгоритм
 
    /improve/neutralization.md
    /improve/max-sw.md
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
 
 ..

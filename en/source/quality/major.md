@@ -1,8 +1,8 @@
 ### Basic requirements.
 
--   The Sharpe Ration over the last 3 years should be $>1$.
+-   The Sharpe Ration over the last 3 years should be >1$.
 
--   The Correlation coefficient over the last 3 years should be $<0.9$
+-   The Correlation coefficient over the last 3 years should be <0.9$
     with the algorithms of the same Sharpe Ratio or bigger.
 
 -   Each user can submit no more than 20 algorithms. The good thing is

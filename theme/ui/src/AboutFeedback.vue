@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="feedback">
     {{ messageUser }}
     <a :href=githubUrl target="_blank">
       {{ messageEditGitHub }}
@@ -35,5 +35,9 @@ export default {
 
 </script>
 
-<style lang="stylus">
+<style scoped>
+.feedback {
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
 </style>

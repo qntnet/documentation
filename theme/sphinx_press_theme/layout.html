@@ -85,14 +85,14 @@
             {%- include "util/extlinks.html" %}
             {% endblock %}
         </navlinks>
-        {% block sidebars %}
-        {%- include "util/sidetoc.html" %}
-        {% endblock %}
-        <!--        {%- if sidebars != None %}-->
-        <!--        {%- for sidebartemplate in sidebars %}-->
-        <!--        {%- include sidebartemplate %}-->
-        <!--        {%- endfor %}-->
-        <!--        {%- endif %}-->
+<!--        {% block sidebars %}-->
+<!--        {%- include "util/sidetoc.html" %}-->
+<!--        {% endblock %}-->
+        {%- if sidebars != None %}
+        {%- for sidebartemplate in sidebars %}
+        {%- include sidebartemplate %}
+        {%- endfor %}
+        {%- endif %}
     </sidebar>
     {%- endblock %}
 

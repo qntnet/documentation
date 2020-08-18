@@ -22,9 +22,9 @@ updated with every report released.
 | inventory              | Total inventory                                                                                                                                                 |
 | ivestment\_short\_term | Short-Term investments                                                                                                                                          |
 | invested\_capital      | Invested capital                                                                                                                                                |
-| shares                 | Total shares outstanding. Если в отчете не содержится соответствующей информации, мы используем issued shares.                                                  |
+| shares                 | Total shares outstanding. If reports does not contain such information we can use issued shares. |
 | ppent                  | Property Plant and Equipment Net                                                                                                                                |
-| cash\_equivalent       | Cash equivalents это инвестиционные ценные бумаги, предназначенные для краткосрочного инвестирования; у них высокое кредитное качество и высокая ликвидность.   |
+| cash\_equivalent       | Cash equivalents are investments securities that are meant for short-term investing; they have high credit quality and are highly liquid. |
 
 _Instant indicators._
 

@@ -1,3 +1,6 @@
+Contents
+==================
+
 .. examplecode documentation master file, created by
    sphinx-quickstart on Mon Mar  6 11:10:24 2017.
    You can adapt this file completely to your liking, but it should at least
@@ -5,7 +8,7 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Getting started:
+   :caption: Getting started
 
    getting-started/about.md
    getting-started/first/first.md
@@ -49,13 +52,6 @@
    /improve/neutralization.md
    /improve/max-sw.md
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
 
 ..

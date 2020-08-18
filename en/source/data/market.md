@@ -12,7 +12,7 @@ shows how to download market data.
 | low                | Daily low price. |
 | vol                | Daily volume of trading in number of shares. |
 | divs               | Dividends from shares. |
-| split              | УIt indicates stock split. Split = 2.0 means that on this day there was a split of shares 2 to 1: the number of shares doubled, and their price halved. |
+| split              | It indicates stock split. Split = 2.0 means that on this day there was a split of shares 2 to 1: the number of shares doubled, and their price halved. |
 | split\_cumprod     | The product of split values from the very beginning. Used to restore original prices |
 | is\_liquid         | We trade only liquid stocks, so this option determines whether this stock can be traded. This is top 500 most liquid stocks over the last month (sorted by trading volume = sum(close\*vol) ). It changes once a month. |
 

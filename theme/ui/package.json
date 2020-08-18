@@ -10,7 +10,10 @@
   "dependencies": {
     "node-sass": "^4.14.1",
     "sass-loader": "^9.0.3",
-    "vue": "^2.5.16"
+    "url-utm-params": "^0.1.0",
+    "vue": "^2.5.16",
+    "vue-analytics": "^5.22.1",
+    "vue-yandex-metrika": "^1.8.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-rc.9",

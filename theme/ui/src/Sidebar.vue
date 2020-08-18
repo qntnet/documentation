@@ -109,8 +109,8 @@ function resolveOpenGroupIndex (route, items) {
     line-height 1.5rem
     padding 1rem 0 1.5rem 1.5rem
     border-bottom 1px solid $borderColor
-  .sidebar-links
-    padding 1.5rem 0
+  //.sidebar-links
+  //  padding 1.5rem 0
 
 @media (max-width: $MQMobile)
   .sidebar
@@ -118,8 +118,8 @@ function resolveOpenGroupIndex (route, items) {
       display block
       .dropdown-wrapper .nav-dropdown .dropdown-item a.router-link-active::after
         top calc(1rem - 2px)
-    .sidebar-links
-      padding 1rem 0
+    //.sidebar-links
+    //  padding 1rem 0
 
 /********************/
 
