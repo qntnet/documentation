@@ -1,6 +1,6 @@
 FROM debian:9.5 as builder
 # build: docker build . -t registry.quantnet-ai.ru/quantnet/documentation:dev
-# run: docker run -p8880:80 --rm registry.quantnet-ai.ru/quantnet/documentation:dev
+# run: docker run -p 8880:80 --rm registry.quantnet-ai.ru/quantnet/documentation:dev
 # push: docker push registry.quantnet-ai.ru/quantnet/documentation:dev
 # urls: http://localhost:8880/documentation/en/ http://localhost:8880/documentation/ru/
 
@@ -34,19 +34,19 @@ RUN apt update && apt -y install curl \
     && apt autoclean \
     && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log
 
-#COPY theme /opt/theme
-#RUN cd /opt/theme/ui   \
-#    && npm install \
-#    && npm run build \
-#    && cd .. && pip3 install -e .
+COPY theme /opt/theme
+RUN cd /opt/theme/ui   \
+    && npm install \
+    && npm run build \
+    && cd .. && pip3 install -e .
 
 RUN pip install sphinx_press_theme
 
 COPY en /opt/en
-RUN cd /opt/en && make html
+RUN cd /opt/en && make clean && make html
 
 COPY ru /opt/ru
-RUN cd /opt/ru && make html
+RUN cd /opt/ru && make clean && make html
 
 FROM nginx:1.19 as production
 
