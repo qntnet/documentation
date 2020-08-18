@@ -12,7 +12,7 @@ To sell a stock, one just needs to assign it a negative weight in the algorithm.
 The positive sign means that we hold a long position (buy shares); the
 negative sign means we hold a short position (sell shares). Thus, the
 capital 1M will be allocated in the following proportions:
-$400,000$ to AAPL; 400,000 to GOOG; $-200,000 to TSLA.
+$400,000 to AAPL; $400,000 to GOOG; $-200,000 to TSLA.
 
 ## Details
 

@@ -1,8 +1,8 @@
 ### Basic requirements.
 
--   The Sharpe Ration over the last 3 years should be >1$.
+-   The Sharpe Ration over the last 3 years should be >1.
 
--   The Correlation coefficient over the last 3 years should be <0.9$
+-   The Correlation coefficient over the last 3 years should be <0.9
     with the algorithms of the same Sharpe Ratio or bigger.
 
 -   Each user can submit no more than 20 algorithms. The good thing is
@@ -17,4 +17,4 @@
 -   The mean daily relative return must be positive.
 
 -   The deadline to submit the algorithm is the end of each month -
-    midnight $(00:00 \text{UTC})$ of the first day in the next month.
+    midnight ``$`(00:00 \text{UTC})`$`` of the first day in the next month.

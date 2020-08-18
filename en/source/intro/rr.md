@@ -19,11 +19,11 @@ can be scaled easily.
 
 
 ![pnl](pnl.png)
-_Рис. 1_
+_Pic. 1_
 
 
 Relative returns simply indicate how much the capital has changed. For
-the i$^{th}$ day we introduce the relative returns (rr) in unit
+the ``$`i^{th}`$`` day we introduce the relative returns (rr) in unit
 fractions:
 
 ```math
@@ -35,7 +35,7 @@ fractions:
 
 Sometimes it's important to understand how equity (cumulative profit,
 PnL) is calculated. Say we allocate our capital in a proportion to the
-vector of *weights* for the i$^{th}$ day. Thus we buy shares at *open*
+vector of *weights* for the ``$`i^{th}`$`` day. Thus we buy shares at *open*
 price and receive the following positions:
 
 ```math
@@ -45,7 +45,7 @@ price and receive the following positions:
 
 where bold variables stand for vectors in the space of shares; division
 is elementwise. For the next day, an algorithm will generate a new
-vector of $\textit{weigths}[i+1]$ that will redistribute our capital
+vector of ``$`\textit{weigths}[i+1]`$`` that will redistribute our capital
 into new positions. Redistribution of portfolio instruments leads to
 capital losses associated mainly with the broker's commission and the
 *slippage*.
