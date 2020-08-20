@@ -7,50 +7,46 @@
    contain the root `toctree` directive.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Начало работы
+   :maxdepth: 1
+   :caption: Быстрый старт
 
-   getting-started/about.md
-   getting-started/first/first.md
-   getting-started/create-strategy/create-strategy.md
-   getting-started/webinar1.md
-   getting-started/templates/templates.md
-   getting-started/edit-strategy/edit-strategy.md
-   getting-started/webinar2.md
-   getting-started/sent-strategy/sent-strategy.md
+   home_quick_start.md
 
 .. toctree::
    :maxdepth: 2
-   :caption: Введение
+   :caption: Основные возможности
 
-   intro/algo.md
-   intro/basic.md
-   intro/positions.md
-   intro/rr.md
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Качество алгоритма
-
-   /quality/rules.md
-   /quality/sharpe.md
-   /quality/unique.md
-   /quality/major.md
-   /quality/isos.md
+   /functional/functional_data.md
+   /functional/functional_quality.md
+   /functional/functional_improvement_algorithms
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Доступные данные
+   :maxdepth: 1
+   :caption: Соревнования
 
-   /data/market.md
-   /data/fundamental.md
+   home_competition_main.md
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Как улучшить алгоритм
+   :maxdepth: 1
+   :caption: Примеры
 
-   /improve/neutralization.md
-   /improve/max-sw.md
+   examples/examples_first.md
+   examples/examples_buy_and_hold.ipynb
+   examples/examples_advance_decline_line.ipynb
+   examples/examples_sRoc_wma_roc.ipynb
+   examples/examples_sRoc_Stochastic.ipynb
+   examples/examples_trend_based_strategy.ipynb
+   examples/examples_prepared_fundamental_data.ipynb
+
+
+
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Теоретическая основа
+
+  theoretical_basis.md
+  /quality/sharpe.md
 
 
 

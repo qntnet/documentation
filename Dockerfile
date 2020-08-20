@@ -4,6 +4,9 @@ FROM debian:9.5 as builder
 # push: docker push registry.quantnet-ai.ru/quantnet/documentation:dev
 # urls: http://localhost:8880/documentation/en/ http://localhost:8880/documentation/ru/
 
+# build: docker build . -t registry.quantnet-ai.ru/quantnet/documentation:prod
+# push: docker push registry.quantnet-ai.ru/quantnet/documentation:prod
+
 RUN apt update && apt -y install curl bzip2 openssh-client \
     && curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh \
     && bash /tmp/miniconda.sh -bfp /usr/local \
@@ -24,6 +27,8 @@ RUN conda install -y \
     'sphinx=3.2' \
     'recommonmark=0.6' \
     'conda-forge::sphinx-markdown-tables' \
+    'nbsphinx' \
+    'IPython' \
      && conda clean -tipsy && conda clean --all --yes
 
 RUN apt update && apt -y install curl \
