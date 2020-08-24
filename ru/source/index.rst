@@ -21,7 +21,7 @@
    /functional/functional_improvement_algorithms
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Соревнования
 
    home_competition_main.md
