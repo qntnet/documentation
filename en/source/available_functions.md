@@ -19,14 +19,14 @@ ts_sum(df, window)<br/><br/><br/><br/><br/><br/>
 
 <td>
 <pre lang="python">
-    def ts_sum(df, window=10):
-        """
-        Wrapper function to estimate rolling sum.
-        :param df: a pandas DataFrame.
-        :param window: the rolling window.
-        :return: a pandas DataFrame with the time-series min over the past 'window' days.
-        """
-        return df.rolling(window).sum()
+def ts_sum(df, window=10):
+    """
+    Wrapper function to estimate rolling sum.
+    :param df: a pandas DataFrame.
+    :param window: the rolling window.
+    :return: a pandas DataFrame with the time-series min over the past 'window' days.
+    """
+    return df.rolling(window).sum()
 </pre>
 </td>
     
