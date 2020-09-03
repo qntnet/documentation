@@ -365,7 +365,7 @@ def ts_argmax(df, window=10):
 <tr>
 <td>
 <pre>
-ts_argmin(df, window)<br/><br/><br/><br/>
+ts_argmin(df, window)<br/><br/><br/><br/><br/><br/>
 </pre>
 </td>
 
@@ -386,7 +386,7 @@ def ts_argmin(df, window=10):
 <tr>
 <td>
 <pre>
-decay_linear(df, period)<br/><br/><br/><br/><br/><br/>
+decay_linear(df, period)<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 </pre>
 </td>
 
