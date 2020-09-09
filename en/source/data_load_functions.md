@@ -152,3 +152,40 @@ qnt.data.secgov_load_indicators(assets, time_coord, standard_indicators=None, bu
 |start_date_offset|datetime.timedelta, tail size of data. min_date = max_date - tail|
 |fill_strategy|function, filling strategy|
 
+**Output**
+
+The output is xarray DataArray with historical fundomental data. 
+
+**Example**
+
+We have collected and processed a large amount of fundamental data for users. One can find the list of prepared data [here](https://quantnet.ai/documentation/ru/functional/functional_data.html). Below are two ways to download prepared data. 
+
+The first way is just to list the desired data labels.
+
+<pre lang="python">
+data_lbls = ['assets', 'liabilities', 'operating_expense', 'ivestment_short_term']
+# One can load corresponding data
+fun_data1 = qnt.data.secgov_load_indicators(assets,time_coord = data.time, standard_indicators = data_lbls)
+</pre>
+
+The second way to load fundamental data is more complecated but gives user more options. Each report for the [Securities and Exchange Commission](https://www.sec.gov/) contains facts that are listed [here](http://xbrlview.fasb.org/yeti/). One can make their own builder that takes a name and a list of desired facts. Some indicators are instant and updated regularly within each report.
+
+<pre lang="python">
+instant_data_list = [InstantIndicatorBuilder('assets' , ['us-gaap:Assets'], True), 
+                     InstantIndicatorBuilder('liabilities', ['us-gaap:Liabilities'], True),
+                    InstantIndicatorBuilder('shares', ['us-gaap:CommonStockSharesOutstanding', 
+                                                       'us-gaap:CommonStockSharesIssued'], True)]
+</pre>
+
+Others are periodical and correspond to a certain period. For example, operating expenses and sales. For periodical indicators, you can receive information with the quarter, annual frequency, or 'last twelve month' value. For these purposes put 'qf','af' or 'ltm' correspondingly:
+
+<pre lang="python">
+period_data_list = [PeriodIndicatorBuilder('operating_expense', ['us-gaap:OperatingExpenses'], True, 'qf'),
+                   PeriodIndicatorBuilder('sales_revenue', ['us-gaap:SalesRevenueGoodsNet',
+                                                            'us-gaap:SalesRevenueNet',
+                                                            'us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax'
+                                                           ], True, 'af'),
+                    PeriodIndicatorBuilder('sga_expense', ['us-gaap:SellingGeneralAndAdministrativeExpense'], True, 'ltm')]
+</pre>
+
+For the first way to load data, 'ltm' set as default!
