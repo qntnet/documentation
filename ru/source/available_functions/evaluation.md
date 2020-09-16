@@ -1,9 +1,10 @@
 # Evaluation
 
-Once we have constructed an algorithm and plotted an equity on a historical data, we need to use a set of criteria to evaluate the performance. All current competition rules are available [here](https://quantnet.ai/contest).
+После того, как мы построили алгоритм и построили график капитала на исторических данных, нам необходимо использовать набор критериев для оценки производительности. Все действующие правила конкурса доступны [здесь](https://quantnet.ai/contest).
 
 ## Statistics
-First, to estimate the profitability of the algorithm, we measure the Sharpe ratio (SR), the most important and popular metric. For our platform, we use the annualized SR and assume that there is ≈252 trading days on average per year. Annualized SR must be at least greater than 1 for the In-Sample test. "calc_stat" function allows to calculate all the statistic of an algorithm.
+
+Во-первых, чтобы оценить прибыльность алгоритма, мы измеряем коэффициент Шарпа (SR), наиболее используемый и значимый показатель. Для нашей платформы мы используем среднегодовые значения SR и предполагаем, что в среднем в году  ≈252 торговых дня. Годовой SR должен быть как минимум больше 1 для теста In-Sample. Функция «calc_stat» позволяет вычислить всю основную статистику алгоритма.
 
 **Function**
 <pre lang="python">
@@ -27,7 +28,7 @@ qnt.stats.calc_stat(data, portfolio_history, slippage_factor=0.05, roll_slippage
 
 **Output**
 
-The output is xarray with all statistics.
+Выход функции - xarray DataArray со всей статистикой.
 
 |Output columns|
 |---|
@@ -45,7 +46,7 @@ The output is xarray with all statistics.
 
 **Example**
 
-Assume you chose "buy and hold" strategy and formed output weights:
+Предположим, вы выбрали стратегию "buy and hold" и сформировали веса алгоритма:
 
 <pre lang="python">
 import qnt.data    as qndata
@@ -66,7 +67,7 @@ weights = weights.fillna(0.0)
 output = weights.unstack().to_xarray()
 </pre>
 
-When the weights are formed, one can calculate statistic in order to evaluate algorithm on a historical data:
+Когда веса сформированы, можно вычислить статистику для оценки алгоритма на исторических данных:
 
 <pre lang="python">
 stat = qnstats.calc_stat(data, output, slippage_factor=0.05)
@@ -108,17 +109,17 @@ qngraph.make_plot_filled(SRchart.index, SRchart, color="#F442C5", name="Rolling 
 
 ## Max stock weight
 
-It is worth to use a few instruments for the trading algorithm. Even if the strategy is right, unpredictable world events/news may cause irreparable damage (for instance, [1](https://www.ft.com/content/be040b3a-5c96-11ea-b0ab-339c2307bcd4) and [2](https://www.themoscowtimes.com/2020/03/06/russias-tinkoff-bank-shares-fall-as-founder-indicted-in-us-a69538)).
+Для торгового алгоритма разумно использовать несколько инструментов. Даже если стратегия верна, непредсказуемые мировые события / новости могут нанести непоправимый ущерб (например, [1](https://www.ft.com/content/be040b3a-5c96-11ea-b0ab-339c2307bcd4) и [2](https://www.themoscowtimes.com/2020/03/06/russias-tinkoff-bank-shares-fall-as-founder-indicted-in-us-a69538)).
 
-A good way to diversify risks is to increase the number of instruments in the investment portfolio. The algorithm can be submitted <ins>only when</ins> it meets the following criterion - the maximum stock weight (MSW) in the algorithm does not exceed 5 percent.
+Хороший способ диверсифицировать риски - увеличить количество инструментов в инвестиционном портфеле. Алгоритм может быть представлен <ins> только </ins> в том случае, если он соответствует следующему критерию - максимальный вес инструмента (MSW) в алгоритме не превышает 5 процентов.
 
-However, this rule contains concessions aimed at eliminating disputable situations. Below is a more detailed description of the requirement. The maximum stock filter is passed if one of the conditions is met:
-- The MSW can be from 5% to 10% (5% > MSW > 10%) no more than 5 days per year.
-- The cumulative excess of MSW for all shares is calculated. The average daily value should not exceed 2 %.
+Однако в этом правиле есть послабления, направленные на устранение спорных ситуаций. Ниже приводится более подробное описание данного требования. Фильтр считается пройденным, если выполняется одно из условий:
+- MSW может составлять от 5% до 10% портфеля (5%> MSW> 10%) не более 5 дней в году.
+- Рассчитывается совокупное превышение веса всех инструментов в портфеле. Среднесуточное значение не должно превышать 2%.
 
-The hard limit is 10%. It means that if MSW exceeds 10% your algorithm does not pass the filter.
+Дополнительно существует жесткий лимит - 10%. Это означает, что если MSW превышает 10%, ваш алгоритм не проходит фильтр и отсеивается.
 
-One can use check_exposure function in order to check this requirement.
+Для проверки данного фильтра можно использовать функцию check_exposure.
 
 **Function**
 <pre lang="python">
@@ -141,5 +142,5 @@ check_exposure(portfolio_history,
 
 **Output**
 
-The output is bool. True indicates successful passing the filter.
+Выход функции логческая переменная. True указывает на успешное прохождение фильтра.
 
