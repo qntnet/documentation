@@ -1,6 +1,9 @@
 # Evaluation
 
+Once we have constructed an algorithm and plotted an equity on a historical data, we need to use a set of criteria to evaluate the performance. All current competition rules are available [here](https://quantnet.ai/contest).
+
 ## Statistics
+First, to estimate the profitability of the algorithm, we measure the Sharpe ratio (SR), the most important and popular metric. For our platform, we use the annualized SR and assume that there is ≈252 trading days on average per year. Annualized SR must be at least greater than 1 for the In-Sample test. "calc_stat" function allows to calculate all the statistic of an algorithm.
 
 **Function**
 <pre lang="python">
@@ -54,7 +57,7 @@ from IPython.display import display
 data = qndata.load_data(
                        tail = dt.timedelta(days=4*365),
                        dims = ("time", "field", "asset"),
-                       forward_order=True)     
+                       forward_order=True)
 is_liquid = data.loc[:,"is_liquid",:].to_pandas()
 # set and normalize weights:
 weights = is_liquid.div(is_liquid.abs().sum(axis=1, skipna=True), axis=0)
@@ -71,7 +74,7 @@ display(stat.to_pandas().tail())
 </pre>
 
 |field <br/> time|	equity|	relative_return|	volatility|	underwater|	max_drawdown|	sharpe_ratio|	mean_return|	bias|	instruments|	avg_turnover|	avg_holding_time|
-|---|---|---|---|---|---|---|---|---|---|---|---|											
+|---|---|---|---|---|---|---|---|---|---|---|---|
 |2020-09-01	|1.547375	|0.007302|	0.213420|	0.000000|	-0.382386|	0.549581|	0.117291|	1.0|	967.0|	0.026296|	83.810199|
 |2020-09-02	|1.565288	|0.011577	|0.213385	|0.000000	|-0.382386	|0.564401	|0.120434	|1.0	|967.0	|0.026506	|85.397114|
 |2020-09-03|	1.514099|	-0.032703|	0.213932|	-0.032703|	-0.382386|	0.518395|	0.110901|	1.0|	967.0|	0.026526|	85.397114|
@@ -103,5 +106,41 @@ qngraph.make_plot_filled(SRchart.index, SRchart, color="#F442C5", name="Rolling 
 
 ![](rollingsharpe.PNG)
 
+## Max stock weight
 
+It is worth to use a few instruments for the trading algorithm. Even if the strategy is right, unpredictable world events/news may cause irreparable damage (for instance, [1](https://www.ft.com/content/be040b3a-5c96-11ea-b0ab-339c2307bcd4) and [2](https://www.themoscowtimes.com/2020/03/06/russias-tinkoff-bank-shares-fall-as-founder-indicted-in-us-a69538)).
 
+A good way to diversify risks is to increase the number of instruments in the investment portfolio. The algorithm can be submitted <ins>only when</ins> it meets the following criterion - the maximum stock weight (MSW) in the algorithm does not exceed 5 percent.
+
+However, this rule contains concessions aimed at eliminating disputable situations. Below is a more detailed description of the requirement. The maximum stock filter is passed if one of the conditions is met:
+- The MSW can be from 5% to 10% (5% > MSW > 10%) no more than 5 days per year.
+- The cumulative excess of MSW for all shares is calculated. The average daily value should not exceed 2 %.
+
+The hard limit is 10%. It means that if MSW exceeds 10% your algorithm does not pass the filter.
+
+One can use check_exposure function in order to check this requirement.
+
+**Function**
+<pre lang="python">
+check_exposure(portfolio_history,
+                   soft_limit=0.05, hard_limit=0.1,
+                   days_tolerance=0.02, excess_tolerance=0.02,
+                   avg_period=252, check_period=252 * 3)
+</pre>
+
+**Parameters**
+|Parameter|Explanation|
+|---|---|
+|portfolio_history|output xarray DataArray|
+|soft_limit|soft limit for exposure|
+|hard_limit|hard limit for exposure|
+|days_tolerance|the number of days when exposure may be in range from 0.05 to 0.1|
+|excess_tolerance|max allowed average excess|
+|avg_period|period for the ratio calculation|
+|check_period|period for checking|
+
+**Output**
+
+The output is bool. True indicates successful passing the filter.
+
+**Example**

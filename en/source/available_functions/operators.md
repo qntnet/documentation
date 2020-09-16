@@ -1,4 +1,4 @@
-**Operators**
+# Operators
 
 <table>
 <tr>
@@ -29,7 +29,7 @@ def ts_sum(df, window=10):
     return df.rolling(window).sum()
 </pre>
 </td>
-    
+
 <tr>
 <td>
 <pre>
@@ -51,7 +51,7 @@ def sma(df, window=10):
 </pre>
 </td>
 
-    
+
 <tr>
 <td>
 <pre>
@@ -71,7 +71,7 @@ def stddev(df, window=10):
     return df.rolling(window).std()
 </pre>
 </td>
-    
+
 <tr>
 <td>
 <pre>
@@ -91,8 +91,8 @@ def correlation(x, y, window=10):
     return x.rolling(window).corr(y)
 </pre>
 </td>
-    
-    
+
+
 <tr>
 <td>
 <pre>
@@ -113,26 +113,6 @@ def covariance(x, y, window=10):
 </pre>
 </td>
 
-    
-<tr>
-<td>
-<pre>
-rolling_rank(na)<br/><br/><br/><br/><br/><br/>
-</pre>
-</td>
-
-<td>
-<pre lang="python">
-def rolling_rank(na):
-    """
-    Auxiliary function to be used in pd.rolling_apply
-    :param na: numpy array.
-    :return: The rank of the last value in the array.
-    """
-    return rankdata(na)[-1]
-</pre>
-</td>
-    
 
 <tr>
 <td>
@@ -152,7 +132,27 @@ def rolling_rank(na):
     return rankdata(na)[-1]
 </pre>
 </td>
-    
+
+
+<tr>
+<td>
+<pre>
+rolling_rank(na)<br/><br/><br/><br/><br/><br/>
+</pre>
+</td>
+
+<td>
+<pre lang="python">
+def rolling_rank(na):
+    """
+    Auxiliary function to be used in pd.rolling_apply
+    :param na: numpy array.
+    :return: The rank of the last value in the array.
+    """
+    return rankdata(na)[-1]
+</pre>
+</td>
+
 
 <tr>
 <td>
@@ -173,7 +173,7 @@ def ts_rank(df, window=10):
     return df.rolling(window).apply(rolling_rank)
 </pre>
 </td>
-    
+
 
 <tr>
 <td>
@@ -193,7 +193,7 @@ def rolling_prod(na):
     return np.prod(na)
 </pre>
 </td>
-    
+
 
 <tr>
 <td>
@@ -214,8 +214,8 @@ def product(df, window=10):
     return df.rolling(window).apply(rolling_prod)
 </pre>
 </td>
-    
-    
+
+
 <tr>
 <td>
 <pre>
@@ -235,7 +235,7 @@ def ts_min(df, window=10):
     return df.rolling(window).min()
 </pre>
 </td>
-    
+
 
 <tr>
 <td>
@@ -256,7 +256,7 @@ def ts_max(df, window=10):
     return df.rolling(window).max()
 </pre>
 </td>
-    
+
 
 <tr>
 <td>
@@ -277,7 +277,7 @@ def delta(df, period=1):
     return df.diff(period)
 </pre>
 </td>
-    
+
 
 <tr>
 <td>
@@ -298,7 +298,7 @@ def delay(df, period=1):
     return df.shift(period)
 </pre>
 </td>
-    
+
 
 <tr>
 <td>
@@ -318,7 +318,7 @@ def rank(df):
     return df.rank(axis=1, pct=True)
 </pre>
 </td>
-    
+
 
 <tr>
 <td>
@@ -339,8 +339,8 @@ def scale(df, k=1):
     return df.mul(k).div(np.abs(df).sum())
 </pre>
 </td>
-    
-    
+
+
 <tr>
 <td>
 <pre>
@@ -357,10 +357,10 @@ def ts_argmax(df, window=10):
     :param window: the rolling window.
     :return: well.. that :)
     """
-    return df.rolling(window).apply(np.argmax) + 1 
+    return df.rolling(window).apply(np.argmax) + 1
 </pre>
 </td>
-    
+
 
 <tr>
 <td>
@@ -382,7 +382,7 @@ def ts_argmin(df, window=10):
 </pre>
 </td>
 
-    
+
 <tr>
 <td>
 <pre>
@@ -419,8 +419,8 @@ def decay_linear(df, period=10):
     return pd.DataFrame(na_lwma, index=df.index, columns=df.columns)
 </pre>
 </td>
-    
-    
-    
+
+
+
 </tr>
 </table>
