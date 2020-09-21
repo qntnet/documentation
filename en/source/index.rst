@@ -47,6 +47,15 @@ Contents
 
 .. toctree::
    :maxdepth: 2
+   :caption: Available functions
+
+   /available_functions/data_load_functions.md
+   /available_functions/operators.md
+   /available_functions/evaluation.md
+   /available_functions/improve_algorithm.md
+
+.. toctree::
+   :maxdepth: 2
    :caption: Improve your algorithm
 
    /improve/neutralization.md
