@@ -31,25 +31,25 @@ _Таблица 1. Instant indicators._
 ## Periodical indicators. ##
 
 Такие данные соответствуют определенному периоду. Например, доход. Для
-периодических индикаторов вы можете получать информацию с квартальной,
-годовой периодичностью или получить значение «за последние двенадцать
-месяцев».
+периодических индикаторов вы можете получать информацию с квартальной (qf),
+годовой периодичностью (af) или получить значение «за последние двенадцать
+месяцев» (ltm).
 
-| Наименование данных | Описание                                  |
+|  Наименование данных  | Описание                                  |
 | ------------------- | ----------------------------------------- |
-| sales\_revenue      | Revenue from sales |
-| total\_revenue      | Total revenue |
-| cashflow\_op        | Cashflow from operating activities |
-| cogs                | Cost of goods sold |
-| divs                | Dividends |
-| eps                 | Earnings per share |
-| income              | Income |
-| interest\_expense   | Interest expense |
-| operating\_expense  | Operating expenses |
-| operating\_income   | Operating income |
-| rd\_expense         | Research and development expense |
-| sales\_ps           | sales per share |
-| sga\_expense        | Selling, general & administrative expense |
+| sales\_revenue\_ltm / sales\_revenue\_af / sales\_revenue\_qf     | Revenue from sales |
+| total\_revenue\_ltm / total\_revenue\_af / total\_revenue\_qf     | Total revenue |
+| cashflow\_op\_ltm / cashflow\_op\_af / cashflow\_op\_qf    | Cashflow from operating activities |
+| cogs\_ltm / cogs\_af / cogs\_qf | Cost of goods sold |
+| divs\_ltm / divs\_af / divs\_qf | Dividends |
+| eps\_ltm / eps\_af / eps\_qf | Earnings per share |
+| income\_ltm / income\_af / income\_qf /  | Income |
+| interest\_expense\_ltm / interest\_expense\_af / interest\_expense\_qf | Interest expense |
+| operating\_expense\_ltm / operating\_expense\_af / operating\_expense\_qf | Operating expenses |
+| operating\_income\_ltm / operating\_income\_af / operating\_income\_qf | Operating income |
+| rd\_expense\_ltm / rd\_expense\_af / rd\_expense\_qf | Research and development expense |
+| sales\_ps\_ltm / sales\_ps\_af / sales\_ps\_qf | sales per share |
+| sga\_expense\_ltm / sga\_expense\_af / sga\_expense\_qf   | Selling, general & administrative expense |
 
 _Таблица 2. Periodical indicators._
 

@@ -163,7 +163,7 @@ qnt.data.secgov_load_indicators(assets, time_coord, standard_indicators=None, bu
 Первый способ - просто перечислить наименования подготовленных фундаментальных показателей.
 
 <pre lang="python">
-data_lbls = ['assets', 'liabilities', 'operating_expense', 'ivestment_short_term']
+data_lbls = ['assets', 'liabilities']
 # One can load corresponding data
 fun_data1 = qnt.data.secgov_load_indicators(assets,time_coord = data.time, standard_indicators = data_lbls)
 </pre>
@@ -189,5 +189,3 @@ period_data_list = [PeriodIndicatorBuilder('operating_expense', ['us-gaap:Operat
                                                            ], True, 'af'),
                     PeriodIndicatorBuilder('sga_expense', ['us-gaap:SellingGeneralAndAdministrativeExpense'], True, 'ltm')]
 </pre>
-
-Для первого способа загрузки данных по умолчанию установлен ltm!

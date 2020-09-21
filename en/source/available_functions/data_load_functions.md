@@ -40,7 +40,7 @@ The output is the list of dicts with info for all tickers. For instance, the dic
  'FIGI': 'BBG000D5F2L9'}
 </pre>
 
-**Example** 
+**Example**
 
 One can use it by setting the time interval:
 
@@ -74,7 +74,7 @@ qnt.data.load_data(
         max_date: tp.Union[str, datetime.date, None] = None,
         dims: tp.Tuple[str, str, str] = (ds.FIELD, ds.TIME, ds.ASSET),
         forward_order: bool = False,
-        tail: tp.Union[datetime.timedelta, None] = None) 
+        tail: tp.Union[datetime.timedelta, None] = None)
 </pre>
 
 **Parameters**
@@ -91,7 +91,7 @@ qnt.data.load_data(
 **Output**
 
 The output is xarray DataArray with historical data for selected assets.
-		
+
 |asset<br/>time|NASDAQ:AAPL<br/> |NASDAQ:GOOGL<br/> |
 |---|---|---|
 |2016-09-09|2929.92|798.77|
@@ -100,7 +100,7 @@ The output is xarray DataArray with historical data for selected assets.
 |2016-09-14|3044.44|787.53|
 |2016-09-15|3188.08|790.01|
 
-**Example** 
+**Example**
 One can load market data for Apple Inc and Google Inc for the past 4 years:
 
 <pre lang="python">
@@ -127,8 +127,8 @@ open_price.to_pandas().head()
 |2016-09-13|3010.28|794.01|
 |2016-09-14|3044.44|787.53|
 |2016-09-15|3188.08|790.01|
-		
-		
+
+
 ## Fundamental data
 
 [This](https://quantnet.ai/referee/template/15325118/html) template shows how to download prepared fundamental data.
@@ -154,16 +154,16 @@ qnt.data.secgov_load_indicators(assets, time_coord, standard_indicators=None, bu
 
 **Output**
 
-The output is xarray DataArray with historical fundomental data. 
+The output is xarray DataArray with historical fundomental data.
 
 **Example**
 
-We have collected and processed a large amount of fundamental data for users. One can find the list of prepared data [here](https://quantnet.ai/documentation/ru/functional/functional_data.html). Below are two ways to download prepared data. 
+We have collected and processed a large amount of fundamental data for users. One can find the list of prepared data [here](https://quantnet.ai/documentation/ru/functional/functional_data.html). Below are two ways to download prepared data.
 
 The first way is just to list the desired data labels.
 
 <pre lang="python">
-data_lbls = ['assets', 'liabilities', 'operating_expense', 'ivestment_short_term']
+data_lbls = ['assets', 'liabilities']
 # One can load corresponding data
 fun_data1 = qnt.data.secgov_load_indicators(assets,time_coord = data.time, standard_indicators = data_lbls)
 </pre>
@@ -171,9 +171,9 @@ fun_data1 = qnt.data.secgov_load_indicators(assets,time_coord = data.time, stand
 The second way to load fundamental data is more complecated but gives user more options. Each report for the [Securities and Exchange Commission](https://www.sec.gov/) contains facts that are listed [here](http://xbrlview.fasb.org/yeti/). One can make their own builder that takes a name and a list of desired facts. Some indicators are instant and updated regularly within each report.
 
 <pre lang="python">
-instant_data_list = [InstantIndicatorBuilder('assets' , ['us-gaap:Assets'], True), 
+instant_data_list = [InstantIndicatorBuilder('assets' , ['us-gaap:Assets'], True),
                      InstantIndicatorBuilder('liabilities', ['us-gaap:Liabilities'], True),
-                    InstantIndicatorBuilder('shares', ['us-gaap:CommonStockSharesOutstanding', 
+                    InstantIndicatorBuilder('shares', ['us-gaap:CommonStockSharesOutstanding',
                                                        'us-gaap:CommonStockSharesIssued'], True)]
 </pre>
 
@@ -188,4 +188,3 @@ period_data_list = [PeriodIndicatorBuilder('operating_expense', ['us-gaap:Operat
                     PeriodIndicatorBuilder('sga_expense', ['us-gaap:SellingGeneralAndAdministrativeExpense'], True, 'ltm')]
 </pre>
 
-For the first way to load data, 'ltm' set as default!
