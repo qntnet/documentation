@@ -132,61 +132,67 @@ qngraph.make_plot_filled(performance.index, performance, name="PnL (Equity)", ty
 ![](pnl_neut_after.PNG)
 
 
-## Max stock weight improving
+## Big exposure improving
 
-Если инвестиционная стратегия не проходит [фильтр на максимальный вес инструмента в портфеле](https://quantnet.ai/documentation/en/improve/max-sw.html), можно использовать один из двух вариантов приведенных ниже что бы исправить алгоритм:
+Если инвестиционная стратегия не проходит фильтр на максимальный вес инструмента в портфеле, 
+можно использовать один из двух вариантов приведенных ниже что бы исправить алгоритм:
+
+```python
+import qnt.exposure as qne # расположены в этом пакете
+```
 
 ### Remove days with high exposures
 
 **Function**
-<pre lang="python">
-rm_days_with_high_exposure(weights):
-    exposure = qnstats.calc_exposure(weights)
-    return weights.where(exposure.max('asset') < 0.049, 0)
-</pre>
+```python
+def rm_bad_days(weights, max_weight = 0.049):
+```
 
 **Parameters**
 |Parameter|Explanation|
 |---|---|
 |weights|xarray DataArray with weights of the algorithm.|
+|max_weight|the maximum stock exposure. Default value  = 0.049|
 
 **Output**
 
-На выходе получается xarray DataArray с исправленными весами, удовлетворяющими критерям фильтра.
+На выходе получается xarray DataArray с исправленными весами, удовлетворяющими критерям фильтра, 
+где занулены дни, когда exposure был больше max_weight.
 
 **Example**
 
-<pre lang="python">
-out3 = rm_days_with_high_exposure(output2)
-qnstats.check_exposure(out3)
-</pre>
+```python
+fixed_output = qne.rm_bad_days(output)
+qnstats.check_exposure(fixed_output)
+```
 
 
 ### Mix weights
 
 **Function**
-<pre lang="python">
-mix_weights(primary, secondary, max_weight = 0.049)
-</pre>
+```python
+def mix_weights(primary, secondary, max_weight = 0.049):
+```
 
 **Parameters**
 |Parameter|Explanation|
 |---|---|
 |primary|xarray DataArray with weights of the algorithm that is need to be improved.|
 |secondary|xarray DataArray with weights of the algorithm that passes the maximum stock weight filter.|
-|max_weight|the maximum stock weight. Default value  = 0.049|
+|max_weight|the maximum stock exposure. Default value  = 0.049|
 
 **Output**
 
-На выходе получается xarray DataArray с исправленными весами, удовлетворяющими критерям фильтра.
+На выходе получается xarray DataArray с исправленными весами, удовлетворяющими критерям фильтра,
+сформированный из смеси весов primary и secondary. 
 
 **Example**
 
-<pre lang="python">
+```python 
 mean_weights = data.sel(field='is_liquid')
 mean_weights = mean_weights/abs(mean_weights).sum('asset')
 
-out4 = mix_weights(output2, mean_weights, max_weight = 0.049)
+improved_output = qne.mix_weights(output, mean_weights)
 
-qnstats.check_exposure(out4)
-</pre>
+qnstats.check_exposure(improved_output)
+```
