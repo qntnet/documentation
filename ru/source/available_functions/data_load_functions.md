@@ -10,12 +10,12 @@
 
 **Function**
 
-<pre lang="python">
+```python
 qnt.data.load_assets(
         min_date: tp.Union[str, datetime.date] = '2007-01-01',
         max_date: tp.Union[str, datetime.date, None] = None,
         tail: tp.Union[datetime.timedelta, None] = None)
-</pre>
+```
 
 **Parameters**
 
@@ -29,7 +29,7 @@ qnt.data.load_assets(
 
 На выход функция подаёт список словарей с информацией по всем тикерам. Например, словарь для «IBIO INC» выглядит следующим образом:
 
-<pre lang="python">
+```python
 {'name': 'IBIO INC',
  'sector': 'Health Technology',
  'symbol': 'IBIO',
@@ -38,27 +38,27 @@ qnt.data.load_assets(
  'id': 'AMEX:IBIO',
  'cik': '1420720',
  'FIGI': 'BBG000D5F2L9'}
-</pre>
+```
 
 **Example**
 
 Его можно использовать, задав временной интервал:
 
-<pre lang="python">
+```python
 import qnt.data as qndata          # data loading and manipulation
 assets = qndata.load_assets(min_date = '2015-01-01', max_date = '2018-01-01') # two boundaries
 
 # one boundary
 # assets = qndata.load_assets(min_date = '2018-01-01')
 # assets = qndata.load_assets(max_date = '2020-01-01')
-</pre>
+```
 
 Или загрузить информацию за последние несколько лет:
 
-<pre lang="python">
+```python
 import qnt.data as qndata          # data loading and manipulation
 assets = qndata.load_assets(tail = dt.timedelta(days=4*365))
-</pre>
+```
 
 
 ## Market data
@@ -67,7 +67,7 @@ assets = qndata.load_assets(tail = dt.timedelta(days=4*365))
 
 **Function**
 
-<pre lang="python">
+```python
 qnt.data.load_data(
         assets: tp.List[tp.Union[dict,str]] = None,
         min_date: tp.Union[str, datetime.date] = '2007-01-01',
@@ -75,7 +75,7 @@ qnt.data.load_data(
         dims: tp.Tuple[str, str, str] = (ds.FIELD, ds.TIME, ds.ASSET),
         forward_order: bool = False,
         tail: tp.Union[datetime.timedelta, None] = None)
-</pre>
+```
 
 **Parameters**
 
@@ -103,22 +103,22 @@ qnt.data.load_data(
 **Example**
 Например, можно загрузить рыночные данные для Apple Inc и Google Inc за последние 4 года:
 
-<pre lang="python">
+```python
 import qnt.data as qndata          # data loading and manipulation
 data = qnt.data.load_data(tail = dt.timedelta(days=4*365),
                         dims=("time", "field", "asset"),
                         assets=['NASDAQ:AAPL', 'NASDAQ:GOOGL'],
                         forward_order=True)
-</pre>
+```
 
-<pre lang="python">
+```python
 open_price = data.sel(field = 'open')
 close_price = data.sel(field = 'close')
 low_price = data.sel(field = 'low')
 high_price = data.sel(field = 'high')
 
 open_price.to_pandas().head()
-</pre>
+```
 
 |asset<br/>time|NASDAQ:AAPL<br/> |NASDAQ:GOOGL<br/> |
 |---|---|---|
@@ -135,11 +135,11 @@ open_price.to_pandas().head()
 
 **Function**
 
-<pre lang="python">
+```python
 qnt.data.secgov_load_indicators(assets, time_coord, standard_indicators=None, builders = None,
                            start_date_offset = datetime.timedelta(days=365*2),
                            fill_strategy=lambda xarr: xarr.ffill('time'))
-</pre>
+```
 
 **Parameters**
 
@@ -162,30 +162,30 @@ qnt.data.secgov_load_indicators(assets, time_coord, standard_indicators=None, bu
 
 Первый способ - просто перечислить наименования подготовленных фундаментальных показателей.
 
-<pre lang="python">
+```python
 data_lbls = ['assets', 'liabilities']
 # One can load corresponding data
 fun_data1 = qnt.data.secgov_load_indicators(assets,time_coord = data.time, standard_indicators = data_lbls)
-</pre>
+```
 
 Второй способ загрузки фундаментальных данных более сложен, но дает пользователю больше возможностей. Каждый отчет для [комиссии по ценным бумагам и биржам](https://www.sec.gov/) содержит "факты", которые перечислены [здесь](http://xbrlview.fasb.org/yeti/). Можно сделать свой собственный конструктор, который состоит из названия данных и список соответствующих "фактов".
 
 Некоторые индикаторы отображают текущее состояние и регулярно обновляются в каждом отчете.
 
-<pre lang="python">
+```python
 instant_data_list = [InstantIndicatorBuilder('assets' , ['us-gaap:Assets'], True),
                      InstantIndicatorBuilder('liabilities', ['us-gaap:Liabilities'], True),
                     InstantIndicatorBuilder('shares', ['us-gaap:CommonStockSharesOutstanding',
                                                        'us-gaap:CommonStockSharesIssued'], True)]
-</pre>
+```
 
 Остальные соответствуют определенному периоду. Например, операционные расходы и продажи. Для периодических индикаторов вы можете получать информацию с квартальной, годовой периодичностью или значением за последние двенадцать месяцев - "ltm". Для этих целей поставьте соответственно qf, af или ltm:
 
-<pre lang="python">
+```python
 period_data_list = [PeriodIndicatorBuilder('operating_expense', ['us-gaap:OperatingExpenses'], True, 'qf'),
                    PeriodIndicatorBuilder('sales_revenue', ['us-gaap:SalesRevenueGoodsNet',
                                                             'us-gaap:SalesRevenueNet',
                                                             'us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax'
                                                            ], True, 'af'),
                     PeriodIndicatorBuilder('sga_expense', ['us-gaap:SellingGeneralAndAdministrativeExpense'], True, 'ltm')]
-</pre>
+```

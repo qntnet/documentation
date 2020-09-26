@@ -50,7 +50,6 @@ Contents
    :caption: Available functions
 
    /available_functions/data_load_functions.md
-   /available_functions/operators.md
    /available_functions/evaluation.md
    /available_functions/improve_algorithm.md
 

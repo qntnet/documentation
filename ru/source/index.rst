@@ -22,6 +22,14 @@
 
 .. toctree::
    :maxdepth: 2
+   :caption: Описание функций
+
+   /available_functions/data_load_functions.md
+   /available_functions/evaluation.md
+   /available_functions/improve_algorithm.md
+
+.. toctree::
+   :maxdepth: 2
    :caption: Соревнования
 
    home_competition_main.md

@@ -10,12 +10,12 @@ Available financial instruments with brief information can be downloaded using t
 
 **Function**
 
-<pre lang="python">
+```python
 qnt.data.load_assets(
         min_date: tp.Union[str, datetime.date] = '2007-01-01',
         max_date: tp.Union[str, datetime.date, None] = None,
         tail: tp.Union[datetime.timedelta, None] = None)
-</pre>
+```
 
 **Parameters**
 
@@ -29,7 +29,7 @@ qnt.data.load_assets(
 
 The output is the list of dicts with info for all tickers. For instance, the dict for 'IBIO INC' looks as follows:
 
-<pre lang="python">
+```python
 {'name': 'IBIO INC',
  'sector': 'Health Technology',
  'symbol': 'IBIO',
@@ -38,27 +38,27 @@ The output is the list of dicts with info for all tickers. For instance, the dic
  'id': 'AMEX:IBIO',
  'cik': '1420720',
  'FIGI': 'BBG000D5F2L9'}
-</pre>
+```
 
 **Example**
 
 One can use it by setting the time interval:
 
-<pre lang="python">
+```python
 import qnt.data as qndata          # data loading and manipulation
 assets = qndata.load_assets(min_date = '2015-01-01', max_date = '2018-01-01') # two boundaries
 
 # one boundary
 # assets = qndata.load_assets(min_date = '2018-01-01')
 # assets = qndata.load_assets(max_date = '2020-01-01')
-</pre>
+```
 
 Or load last several years information:
 
-<pre lang="python">
+```python
 import qnt.data as qndata          # data loading and manipulation
 assets = qndata.load_assets(tail = dt.timedelta(days=4*365))
-</pre>
+```
 
 
 ## Market data
@@ -67,7 +67,7 @@ Market data is mainly connected to stocks daily prices. [This](https://quantnet.
 
 **Function**
 
-<pre lang="python">
+```python
 qnt.data.load_data(
         assets: tp.List[tp.Union[dict,str]] = None,
         min_date: tp.Union[str, datetime.date] = '2007-01-01',
@@ -75,7 +75,7 @@ qnt.data.load_data(
         dims: tp.Tuple[str, str, str] = (ds.FIELD, ds.TIME, ds.ASSET),
         forward_order: bool = False,
         tail: tp.Union[datetime.timedelta, None] = None)
-</pre>
+```
 
 **Parameters**
 
@@ -103,22 +103,22 @@ The output is xarray DataArray with historical data for selected assets.
 **Example**
 One can load market data for Apple Inc and Google Inc for the past 4 years:
 
-<pre lang="python">
+```python
 import qnt.data as qndata          # data loading and manipulation
 data = qnt.data.load_data(tail = dt.timedelta(days=4*365),
                         dims=("time", "field", "asset"),
                         assets=['NASDAQ:AAPL', 'NASDAQ:GOOGL'],
                         forward_order=True)
-</pre>
+```
 
-<pre lang="python">
+```python
 open_price = data.sel(field = 'open')
 close_price = data.sel(field = 'close')
 low_price = data.sel(field = 'low')
 high_price = data.sel(field = 'high')
 
 open_price.to_pandas().head()
-</pre>
+```
 
 |asset<br/>time|NASDAQ:AAPL<br/> |NASDAQ:GOOGL<br/> |
 |---|---|---|
@@ -135,11 +135,11 @@ open_price.to_pandas().head()
 
 **Function**
 
-<pre lang="python">
+```python
 qnt.data.secgov_load_indicators(assets, time_coord, standard_indicators=None, builders = None,
                            start_date_offset = datetime.timedelta(days=365*2),
                            fill_strategy=lambda xarr: xarr.ffill('time'))
-</pre>
+```
 
 **Parameters**
 
@@ -162,29 +162,29 @@ We have collected and processed a large amount of fundamental data for users. On
 
 The first way is just to list the desired data labels.
 
-<pre lang="python">
+```python
 data_lbls = ['assets', 'liabilities']
 # One can load corresponding data
 fun_data1 = qnt.data.secgov_load_indicators(assets,time_coord = data.time, standard_indicators = data_lbls)
-</pre>
+```
 
 The second way to load fundamental data is more complecated but gives user more options. Each report for the [Securities and Exchange Commission](https://www.sec.gov/) contains facts that are listed [here](http://xbrlview.fasb.org/yeti/). One can make their own builder that takes a name and a list of desired facts. Some indicators are instant and updated regularly within each report.
 
-<pre lang="python">
+```python
 instant_data_list = [InstantIndicatorBuilder('assets' , ['us-gaap:Assets'], True),
                      InstantIndicatorBuilder('liabilities', ['us-gaap:Liabilities'], True),
                     InstantIndicatorBuilder('shares', ['us-gaap:CommonStockSharesOutstanding',
                                                        'us-gaap:CommonStockSharesIssued'], True)]
-</pre>
+```
 
 Others are periodical and correspond to a certain period. For example, operating expenses and sales. For periodical indicators, you can receive information with the quarter, annual frequency, or 'last twelve month' value. For these purposes put 'qf','af' or 'ltm' correspondingly:
 
-<pre lang="python">
+```python
 period_data_list = [PeriodIndicatorBuilder('operating_expense', ['us-gaap:OperatingExpenses'], True, 'qf'),
                    PeriodIndicatorBuilder('sales_revenue', ['us-gaap:SalesRevenueGoodsNet',
                                                             'us-gaap:SalesRevenueNet',
                                                             'us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax'
                                                            ], True, 'af'),
                     PeriodIndicatorBuilder('sga_expense', ['us-gaap:SellingGeneralAndAdministrativeExpense'], True, 'ltm')]
-</pre>
+```
 

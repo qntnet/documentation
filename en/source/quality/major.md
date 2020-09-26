@@ -18,3 +18,6 @@
 
 -   The deadline to submit the algorithm is the end of each month -
     midnight ``$`(00:00 \text{UTC})`$`` of the first day in the next month.
+
+-   Exposure filter. The algorithm can be submitted <ins>only when</ins> it meets the following criterion
+    the maximum investment in each instrument does not exceed 5 percent of the invested capital. The more details one can find [here](https://quantnet.ai/documentation/en/available_functions/evaluation.html).

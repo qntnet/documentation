@@ -5,9 +5,9 @@
 We can exclude the market influence by balancing long/short positions for our algorithm. Thus, the total investment in the market will be $0. The neutralization could be done for the whole market or each industry (or smaller group). Mathematically, market neutralization is elementary - one need to substruct the mean value for each day. The more details are [here](https://quantnet.ai/documentation/en/improve/neutralization.html).
 
 **Function**
-<pre lang="python">
+```python
 qnt.neutralization.neutralize(weights, assets, group = 'market')
-</pre>
+```
 
 **Parameters**
 |Parameter|Explanation|
@@ -24,7 +24,7 @@ The output is xarray DataArray with neutralised positions among the selected gro
 
 We can consider the implementation of neutralization function on an example of an investing strategy. Each algorithm starts with loading libraries and data:
 
-<pre lang="python">
+```python
 # Basic libraries.
 import xarray as xr
 import numpy as np
@@ -38,10 +38,10 @@ import datetime    as dt
 import qnt.graph   as qngraph
 from qnt.neutralization import neutralize
 import qnt.data.secgov_indicators
-</pre>
+```
 
 
-<pre lang="python">
+```python
 # Load all available asset names since the given date.
 assets = qndata.load_assets(min_date = '2015-01-01')
 assets_names = [i["id"] for i in assets]
@@ -58,17 +58,17 @@ is_liquid = data.loc[:,"is_liquid",:]
 # replace zeros in liquid with NaN
 index = np.array(abs(is_liquid - 1),dtype = bool)
 is_liquid.to_pandas()[index] = np.nan
-</pre>
+```
 
-<pre lang="python">
+```python
 # desired fundamental data
 data_lbls = ['ppent']
 
 # One can load corresponding data
 fun_data1 = qnt.data.secgov_load_indicators(assets,time_coord = data.time, standard_indicators = data_lbls)
-</pre>
+```
 
-<pre lang="python">
+```python
 # In order to estimate Sharpe for a number of algorithms
 def estimate_sharpe(weights_final):
     stat = qnstats.calc_stat(data, weights_final, slippage_factor=0.05)
@@ -81,69 +81,69 @@ def estimate_sharpe(weights_final):
         min_periods=days).to_pandas().values[-1]
 
     print(f'Sharpe ratio = {sharpe_ratio}')
-</pre>
+```
 
 
 Let's say you have an idea - make an algorithm based on property, plant, and equipment (PP&E) amount.
 
-<pre lang="python">
+```python
 weights = fun_data1.sel(field = 'ppent')*is_liquid
 weights = weights/abs(weights).sum('asset')
 estimate_sharpe(weights)
-</pre>
+```
 
-<pre>
+```python
 Sharpe ratio = 0.2009557067119658
-</pre>
+```
 
 Investments in property may move up or down in a short term according to market situations and economic conditions. Thus, the economic situation in the world will affect the PnL chart (including global economic crises).
 
-<pre lang="python">
+```python
 stat = qnstats.calc_stat(data, weights, slippage_factor=0.05)
 
 # show plot with profit and losses:
 performance = stat.to_pandas()["equity"].iloc[:]
 qngraph.make_plot_filled(performance.index, performance, name="PnL (Equity)", type="log")
-</pre>
+```
 
 ![](pnl_neut_init.PNG)
 
 One can remove market influence by applying neutralization function:
 
-<pre lang="python">
+```python
 output = neutralize(-weights,assets,group = 'market')
 estimate_sharpe(output)
-</pre>
+```
 
-<pre>
+```python
 Sharpe ratio = 0.562002051169064
-</pre>
+```
 
 The chart below shows that global crises do not affect PnL behavior for the improved algorithm.
 
-<pre lang="python">
+```python
 stat = qnstats.calc_stat(data, output, slippage_factor=0.05)
 
 # show plot with profit and losses:
 performance = stat.to_pandas()["equity"].iloc[:]
 qngraph.make_plot_filled(performance.index, performance, name="PnL (Equity)", type="log")
-</pre>
+```
 
 ![](pnl_neut_after.PNG)
 
 
-## Max stock weight improving
+## Exposure improving
 
-If the algorithm do not pass the [maximum stock weight filter](https://quantnet.ai/documentation/en/improve/max-sw.html), one may use the one of the two options bellow:
+If the algorithm do not pass the [exposure filter](https://quantnet.ai/documentation/en/improve/max-sw.html), one may use the one of the two options bellow:
 
 ### Remove days with high exposures
 
 **Function**
-<pre lang="python">
+```python
 rm_days_with_high_exposure(weights):
     exposure = qnstats.calc_exposure(weights)
     return weights.where(exposure.max('asset') < 0.049, 0)
-</pre>
+```
 
 **Parameters**
 |Parameter|Explanation|
@@ -156,18 +156,18 @@ The output is xarray DataArray with final improved weigths, passing the maximum 
 
 **Example**
 
-<pre lang="python">
+```python
 out3 = rm_days_with_high_exposure(output2)
 qnstats.check_exposure(out3)
-</pre>
+```
 
 
 ### Mix weights
 
 **Function**
-<pre lang="python">
+```python
 mix_weights(primary, secondary, max_weight = 0.049)
-</pre>
+```
 
 **Parameters**
 |Parameter|Explanation|
@@ -182,11 +182,11 @@ The output is xarray DataArray with final improved weigths, passing the maximum 
 
 **Example**
 
-<pre lang="python">
+```python
 mean_weights = data.sel(field='is_liquid')
 mean_weights = mean_weights/abs(mean_weights).sum('asset')
 
 out4 = mix_weights(output2, mean_weights, max_weight = 0.049)
 
 qnstats.check_exposure(out4)
-</pre>
+```
