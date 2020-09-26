@@ -19,9 +19,18 @@ Contents
    getting-started/webinar2.md
    getting-started/sent-strategy/sent-strategy.md
 
+
 .. toctree::
    :maxdepth: 2
-   :caption: Introduction
+   :caption: Available functions
+
+   /available_functions/data_load_functions.md
+   /available_functions/evaluation.md
+   /available_functions/improve_algorithm.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Introduction to algorithmic trading
 
    intro/algo.md
    intro/basic.md
@@ -38,20 +47,6 @@ Contents
    /quality/major.md
    /quality/isos.md
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Available data
-
-   /data/market.md
-   /data/fundamental.md
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Available functions
-
-   /available_functions/data_load_functions.md
-   /available_functions/evaluation.md
-   /available_functions/improve_algorithm.md
 
 .. toctree::
    :maxdepth: 2
