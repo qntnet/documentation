@@ -1,6 +1,6 @@
-**Important notification**
-
-This section contains detailed API reference documentation. It is intended for people who are already familiar with QuantNet platform. One may prefer to visit [Getting started page](https://quantnet.ai/documentation/en/getting-started/first/first.html) for the first time.
+<p class="tip">
+This section contains detailed API reference documentation. It is intended for people who are already familiar with QuantNet platform. One may prefer to visit  <a href="/documentation/en/getting-started/first/first.html">Getting started page</a> for the first time.
+</p>
 
 # Data loading
 

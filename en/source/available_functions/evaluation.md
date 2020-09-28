@@ -129,6 +129,7 @@ check_exposure(portfolio_history,
 ```
 
 **Parameters**
+
 |Parameter|Explanation|
 |---|---|
 |portfolio_history|output xarray DataArray|
@@ -138,6 +139,7 @@ check_exposure(portfolio_history,
 |excess_tolerance|max allowed average excess|
 |avg_period|period for the ratio calculation|
 |check_period|period for checking|
+
 
 **Output**
 

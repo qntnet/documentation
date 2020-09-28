@@ -10,6 +10,7 @@ qnt.neutralization.neutralize(weights, assets, group = 'market')
 ```
 
 **Parameters**
+
 |Parameter|Explanation|
 |---|---|
 |weights|xarray DataArray with weights of the algorithm.|
@@ -146,6 +147,7 @@ rm_days_with_high_exposure(weights):
 ```
 
 **Parameters**
+
 |Parameter|Explanation|
 |---|---|
 |weights|xarray DataArray with weights of the algorithm.|
@@ -170,6 +172,7 @@ mix_weights(primary, secondary, max_weight = 0.049)
 ```
 
 **Parameters**
+
 |Parameter|Explanation|
 |---|---|
 |primary|xarray DataArray with weights of the algorithm that is need to be improved.|

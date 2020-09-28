@@ -1,6 +1,6 @@
-**Important notification**
-
-В этом разделе содержится подробная справочная документация по API. Он предназначен для людей, уже знакомых с платформой QuantNet. Для первого посещения предпочтительней начать с [этого раздела](https://quantnet.ai/documentation/en/getting-started/first/first.html).
+<p class="tip">
+В этом разделе содержится подробная справочная документация по API. Он предназначен для людей, уже знакомых с платформой QuantNet. Для первого посещения предпочтительней начать с <a href="/documentation/ru/home_quick_start.html">этого раздела</a>.
+</p>
 
 # Data loading
 
@@ -63,7 +63,7 @@ assets = qndata.load_assets(tail = dt.timedelta(days=4*365))
 
 ## Market data
 
-Рыночные данные в основном связаны с дневными ценами акций. [Этот] (https://quantnet.ai/referee/template/14262139/html) шаблон показывает, как загружать рыночные данные.
+Рыночные данные в основном связаны с дневными ценами акций. [Этот](https://quantnet.ai/referee/template/14262139/html) шаблон показывает, как загружать рыночные данные.
 
 **Function**
 
@@ -131,7 +131,7 @@ open_price.to_pandas().head()
 
 ## Fundamental data
 
-[Этот] (https://quantnet.ai/referee/template/15325118/html) шаблон показывает, как загрузить подготовленные фундаментальные данные.
+[Этот](https://quantnet.ai/referee/template/15325118/html) шаблон показывает, как загрузить подготовленные фундаментальные данные.
 
 **Function**
 
@@ -158,7 +158,7 @@ qnt.data.secgov_load_indicators(assets, time_coord, standard_indicators=None, bu
 
 **Example**
 
-Мы собрали и обработали большой объем фундаментальных данных для пользователей. Список подготовленных данных можно найти [здесь] (https://quantnet.ai/documentation/ru/functional/functional_data.html). Ниже приведены два способа загрузки подготовленных данных.
+Мы собрали и обработали большой объем фундаментальных данных для пользователей. Список подготовленных данных можно найти [здесь](https://quantnet.ai/documentation/ru/functional/functional_data.html). Ниже приведены два способа загрузки подготовленных данных.
 
 Первый способ - просто перечислить наименования подготовленных фундаментальных показателей.
 

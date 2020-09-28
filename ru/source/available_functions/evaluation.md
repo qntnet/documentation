@@ -130,6 +130,7 @@ check_exposure(portfolio_history,
 ```
 
 **Parameters**
+
 |Parameter|Explanation|
 |---|---|
 |portfolio_history|output xarray DataArray|

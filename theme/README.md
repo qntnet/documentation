@@ -11,6 +11,14 @@ cd ui   \
 && cd ../theme
 ```
 
+First generate a build
+```console 
+pip3 install -e . \
+&& cd ../ru && make clean && make html \
+&& cd ../en && make clean && make html \
+&& cd ../theme
+```
+
 A modern responsive theme for python's [Sphinx](http://www.sphinx-doc.org) documentation generator.
 
 See it in action on Press Theme own [website](https://schettino72.github.io/sphinx_press_site/)
