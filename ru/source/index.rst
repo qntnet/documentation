@@ -18,7 +18,8 @@
 
    /functional/functional_data.md
    /functional/functional_quality.md
-   /functional/functional_improvement_algorithms
+   /functional/exposure
+   /functional/neutralization
 
 .. toctree::
    :maxdepth: 2
