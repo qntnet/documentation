@@ -1,10 +1,18 @@
 <div class="sidebar-links" role="navigation" aria-label="main navigation">
+  <div class="sidebar-group">
+    <p class="caption">
+      <a class="caption-text" href="{{ pathto(master_doc) }}">Home</a>
+    </p>
+  </div>
   {% for toc in toctree_data %}
     <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="{{ toc.href }}">{{toc.title}}</a></span>
+      <p class="caption" onclick="showHideMenuItem(this)">
+        <span class="caption-text">{{toc.title}}</span>
+        <span class="sidebar_menu_button {% if toc.current %}sidebar_menu_button_open{% endif %}"></span>
       </p>
-      <ul class="{% if toc.current %}current{% endif %}">
+      <ul class="{% if toc.current %}current
+      {% else %} ul_hide
+      {% endif %}">
         {% for entry in toc.entries %}
           <li class="toctree-l1 {% if entry.current %}current{% endif %}"><a href="{{ pathto(entry.name) }}" class="reference internal {% if entry.current %}current{% endif %}">{{entry.title}}</a>
 

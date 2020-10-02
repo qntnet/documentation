@@ -65,6 +65,19 @@
     <meta property="og:image:height" content="500"/>
     <meta http-equiv="pragma" content="no-cache"/>
     <meta http-equiv="CACHE-CONTROL" content="no-cache"/>
+    <script>
+        function showHideMenuItem(e){
+            const next = e.nextElementSibling;
+            const showHideIcon = e.getElementsByClassName('sidebar_menu_button')[0];
+            if (next.classList.contains('ul_hide')) {
+                next.classList.remove('ul_hide');
+                showHideIcon.classList.add('sidebar_menu_button_open');
+            } else {
+                next.classList.add('ul_hide');
+                showHideIcon.classList.remove('sidebar_menu_button_open');
+            }
+        }
+    </script>
 </head>
 
 <body>

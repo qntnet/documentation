@@ -55,7 +55,7 @@
       <div class="logoWrapper"><a class="logo" href="/">Home</a></div>
       <nav class="dropdownmenu">
         <ul>
-          <li><a class="nav-link" target="_self" href="/contest">О нас</a></li>
+          <li><a class="nav-link" target="_self" href="/contest">О конкурсе</a></li>
           <li><a class="nav-link" target="_self" :href=urlDocumentation>Документация</a></li>
           <li><a class="nav-link" target="_self" href="/events">Мероприятия</a></li>
           <li><a class="nav-link" rel="noopener noreferrer" href="/contacts" target="_self">Контакты</a></li>
@@ -68,7 +68,7 @@
             type="checkbox" id="toggle">
           <nav>
             <ul>
-              <li><a class="nav-link" href="/contest" target="_self">О нас</a></li>
+              <li><a class="nav-link" href="/contest" target="_self">О конкурсе</a></li>
               <li><a class="nav-link" :href=urlDocumentation target="_self">Документация</a></li>
               <li><a class="nav-link" href="/events" target="_self">Мероприятия</a></li>
               <li><a class="nav-link" rel="noopener noreferrer" href="/contacts" target="_self">Контакты</a></li>
