@@ -131,4 +131,3 @@ qngraph.make_plot_filled(performance.index, performance, name="PnL (Equity)", ty
 ```
 
 ![](pnl_neut_after.PNG)
-```
