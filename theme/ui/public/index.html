@@ -11,7 +11,19 @@
 <noscript>
     <strong>We're sorry but ui doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
 </noscript>
-
+<script>
+    function showHideMenuItem(e){
+        const next = e.nextElementSibling;
+        const showHideIcon = e.getElementsByClassName('sidebar_menu_button')[0];
+        if (next.classList.contains('ul_hide')) {
+            next.classList.remove('ul_hide');
+            showHideIcon.classList.add('sidebar_menu_button_open');
+        } else {
+            next.classList.add('ul_hide');
+            showHideIcon.classList.remove('sidebar_menu_button_open');
+        }
+    }
+</script>
 <div id="app" class="theme-container" :class="pageClasses">
     <navbar @toggle-sidebar="toggleSidebar">
         <router-link to='/' class="home-link">
@@ -36,94 +48,15 @@
             <navlinks>
                 xxx
             </navlinks>
+            <div id="searchbox" role="search" class="searchbox"><div class="caption"><span class="caption-text">Быстрый поиск</span> <div class="searchformwrapper"><form action="search.html" method="get" class="search"><input type="text" name="q"> <input type="submit" value="Поиск"> <input type="hidden" name="check_keywords" value="yes"> <input type="hidden" name="area" value="default"></form></div></div></div>
 
-            <div class="sidebar-links" role="navigation" aria-label="main navigation">
-                <div class="sidebar-group">
-                    <p class="caption"><span class="caption-text">Docs</span></p>
-                    <ul class="current">
-                        <li class="toctree-l1 current"><a class="current reference internal" href="#">About</a>
-                            <ul>
-                                <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
-                                <li class="toctree-l2"><a class="reference internal" href="#status">Status</a></li>
-                            </ul>
-                        </li>
-                        <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a>
-                        </li>
-                    </ul>
-
-                    <p class="caption"><span class="caption-text">Demo</span></p>
-                    <ul class="current">
-                        <li class="toctree-l1 current"><a class="reference internal" href="index.html">Demo</a>
-                            <ul class="current">
-                                <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic
-                                    Specification</a></li>
-                                <li class="toctree-l2"><a class="reference internal"
-                                                          href="admonition.html">Admonitions</a></li>
-                                <li class="toctree-l2"><a class="reference internal" href="domain.html">domain</a></li>
-                                <li class="toctree-l2"><a class="reference internal"
-                                                          href="extensions.html">Extensions</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <p class="caption"><span class="caption-text">Demo</span></p>
-                    <ul class="current">
-                        <li class="toctree-l1 current"><a class="reference internal" href="index.html">Demo</a>
-                            <ul class="current">
-                                <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic
-                                    Specification</a></li>
-                                <li class="toctree-l2"><a class="reference internal"
-                                                          href="admonition.html">Admonitions</a></li>
-                                <li class="toctree-l2"><a class="reference internal" href="domain.html">domain</a></li>
-                                <li class="toctree-l2"><a class="reference internal"
-                                                          href="extensions.html">Extensions</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <p class="caption"><span class="caption-text">Demo</span></p>
-                    <ul class="current">
-                        <li class="toctree-l1 current"><a class="reference internal" href="index.html">Demo</a>
-                            <ul class="current">
-                                <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic
-                                    Specification</a></li>
-                                <li class="toctree-l2"><a class="reference internal"
-                                                          href="admonition.html">Admonitions</a></li>
-                                <li class="toctree-l2"><a class="reference internal" href="domain.html">domain</a></li>
-                                <li class="toctree-l2"><a class="reference internal"
-                                                          href="extensions.html">Extensions</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <p class="caption"><span class="caption-text">Demo</span></p>
-                    <ul class="current">
-                        <li class="toctree-l1 current"><a class="reference internal" href="index.html">Demo</a>
-                            <ul class="current">
-                                <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic
-                                    Specification</a></li>
-                                <li class="toctree-l2"><a class="reference internal"
-                                                          href="admonition.html">Admonitions</a></li>
-                                <li class="toctree-l2"><a class="reference internal" href="domain.html">domain</a></li>
-                                <li class="toctree-l2"><a class="reference internal"
-                                                          href="extensions.html">Extensions</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <p class="caption"><span class="caption-text">Demo</span></p>
-                    <ul class="current">
-                        <li class="toctree-l1 current"><a class="reference internal" href="index.html">Demo</a>
-                            <ul class="current">
-                                <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic
-                                    Specification</a></li>
-                                <li class="toctree-l2"><a class="reference internal"
-                                                          href="admonition.html">Admonitions</a></li>
-                                <li class="toctree-l2"><a class="reference internal" href="domain.html">domain</a></li>
-                                <li class="toctree-l2"><a class="reference internal"
-                                                          href="extensions.html">Extensions</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                </div>
-            </div><!-- sidebar-links -->
+            <div role="navigation" aria-label="main navigation" class="sidebar-links"><div class="sidebar-group"><p onclick="showHideMenuItem(this)" class="caption"><span class="caption-text">Быстрый старт</span> <span class="sidebar_menu_button sidebar_menu_button_open"></span></p> <ul class="current
+      "><li class="toctree-l1 current"><a href="#" class="reference internal current">Быстрый старт</a> <ul><li class="toctree-l2"><a href="#quantnet" class="reference internal">Что такое QuantNet?</a></li> <li class="toctree-l2"><a href="#id2" class="reference internal">Начало работы</a></li> <li class="toctree-l2"><a href="#id9" class="reference internal">Вебинар. Как начать работу на платформе</a></li> <li class="toctree-l2"><a href="#id10" class="reference internal">Вебинар. Создаем стратегию с помощью шаблонов</a></li> <li class="toctree-l2"><a href="#id11" class="reference internal">Готовы к большему?</a></li></ul></li></ul></div> <div class="sidebar-group"><p onclick="showHideMenuItem(this)" class="caption"><span class="caption-text">Основные возможности</span> <span class="sidebar_menu_button "></span></p> <ul class=" ul_hide
+      "><li class="toctree-l1 "><a href="functional/functional_data.html" class="reference internal ">Финансовые данные</a></li> <li class="toctree-l1 "><a href="functional/functional_quality.html" class="reference internal ">Оценка качества стратегии</a></li> <li class="toctree-l1 "><a href="functional/functional_improvement_algorithms.html" class="reference internal ">Улучшение алгоритмов</a></li></ul></div> <div class="sidebar-group"><p onclick="showHideMenuItem(this)" class="caption"><span class="caption-text">Описание функций</span> <span class="sidebar_menu_button "></span></p> <ul class=" ul_hide
+      "><li class="toctree-l1 "><a href="available_functions/data_load_functions.html" class="reference internal ">Data loading</a></li> <li class="toctree-l1 "><a href="available_functions/evaluation.html" class="reference internal ">Evaluation</a></li> <li class="toctree-l1 "><a href="available_functions/improve_algorithm.html" class="reference internal ">Improve the strategy</a></li></ul></div> <div class="sidebar-group"><p onclick="showHideMenuItem(this)" class="caption"><span class="caption-text">Соревнования</span> <span class="sidebar_menu_button "></span></p> <ul class=" ul_hide
+      "><li class="toctree-l1 "><a href="home_competition_main.html" class="reference internal ">Основные положения о соревнованиях</a></li></ul></div> <div class="sidebar-group"><p onclick="showHideMenuItem(this)" class="caption"><span class="caption-text">Примеры</span> <span class="sidebar_menu_button "></span></p> <ul class=" ul_hide
+      "><li class="toctree-l1 "><a href="examples/examples_first.html" class="reference internal ">Стратегия торговли по ценам открытия</a></li> <li class="toctree-l1 "><a href="examples/examples_buy_and_hold.html" class="reference internal ">A 10-minute Buy-and-Hold Template</a></li> <li class="toctree-l1 "><a href="examples/examples_advance_decline_line.html" class="reference internal ">Buy-and-Hold Strategy with Advance/Decline Line</a></li> <li class="toctree-l1 "><a href="examples/examples_sRoc_wma_roc.html" class="reference internal ">Technical Analysis Template: sRoC = WMA + RoC</a></li> <li class="toctree-l1 "><a href="examples/examples_sRoc_Stochastic.html" class="reference internal ">Technical Analysis Template: sRoC + Stochastic Oscillator</a></li> <li class="toctree-l1 "><a href="examples/examples_trend_based_strategy.html" class="reference internal ">Trend based strategy</a></li> <li class="toctree-l1 "><a href="examples/examples_prepared_fundamental_data.html" class="reference internal ">Prepared fundamental data</a></li></ul></div> <div class="sidebar-group"><p onclick="showHideMenuItem(this)" class="caption"><span class="caption-text">Теоретическая основа</span> <span class="sidebar_menu_button "></span></p> <ul class=" ul_hide
+      "><li class="toctree-l1 "><a href="theoretical_basis.html" class="reference internal ">Алгоритмическая торговля</a></li> <li class="toctree-l1 "><a href="quality/sharpe.html" class="reference internal ">Sharpe Ratio</a></li></ul></div></div>
 
         </sidebar>
 
