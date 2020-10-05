@@ -55,5 +55,6 @@ RUN cd /opt/ru && make clean && make html
 
 FROM nginx:1.19 as production
 
-COPY --from=builder /opt/en/build/html /usr/share/nginx/html/documentation/en
-COPY --from=builder /opt/ru/build/html /usr/share/nginx/html/documentation/ru
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /opt/en/build/html /opt/en
+COPY --from=builder /opt/ru/build/html /opt/ru
