@@ -1,5 +1,6 @@
 # Финансовые данные
 
+
 ## Доступные инструменты
 Выгрузим финансовые данные по акциям.
 <p class="tip">Рекомендуем использовать данные начиная с 2015 года. Рыночные цены акций доступны с 2000 года</p>
@@ -99,7 +100,7 @@ def get_company_filter_by(data_all, company_names):
 filter_data = get_company_filter_by(data, company_names)
 ```
 
-## Market data
+## Рыночные данные
 
 Подробную инструкцию как скачать рыночные данные можно получить в
 [этом](https://quantnet.ai/referee/template/14262139/html) шаблоне.

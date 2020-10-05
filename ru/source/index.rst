@@ -1,4 +1,4 @@
-Оглавление
+Contents
 ==================
 
 .. examplecode documentation master file, created by
@@ -7,37 +7,52 @@
    contain the root `toctree` directive.
 
 .. toctree::
+   :maxdepth: 2
+   :caption: Quick Start
+
+   quick_start/quick_start.md
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: User Guide
+
+   user_guide/data.md
+   user_guide/functional_improvement_algorithms.md
+   user_guide/functional_quality.md
+   user_guide/code.md
+   user_guide/passFilters.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Api Reference
+
+   reference/data_load_functions.md
+   reference/evaluation.md
+   reference/exposure.md
+   reference/neutralization.md
+   reference/operators.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Algorithm quality
+
+   /quality/rules.md
+   /quality/sharpe.md
+   /quality/unique.md
+   /quality/major.md
+   /quality/isos.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Theory
+
+   /theory/theoretical_basis.md
+
+
+.. toctree::
    :maxdepth: 1
-   :caption: Быстрый старт
-
-   home_quick_start.md
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Основные возможности
-
-   /functional/functional_data.md
-   /functional/functional_quality.md
-   /functional/exposure
-   /functional/neutralization
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Описание функций
-
-   /available_functions/data_load_functions.md
-   /available_functions/evaluation.md
-   /available_functions/improve_algorithm.md
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Соревнования
-
-   home_competition_main.md
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Примеры
+   :caption: Templates
 
    examples/examples_first.md
    examples/examples_buy_and_hold.ipynb
@@ -46,16 +61,6 @@
    examples/examples_sRoc_Stochastic.ipynb
    examples/examples_trend_based_strategy.ipynb
    examples/examples_prepared_fundamental_data.ipynb
-
-
-
-
-.. toctree::
-  :maxdepth: 2
-  :caption: Теоретическая основа
-
-  theoretical_basis.md
-  /quality/sharpe.md
 
 
 
