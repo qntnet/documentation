@@ -43,12 +43,6 @@ Contents
    /quality/major.md
    /quality/isos.md
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Theory
-
-   /theory/theoretical_basis.md
-
 
 .. toctree::
    :maxdepth: 1
@@ -62,7 +56,11 @@ Contents
    examples/examples_trend_based_strategy.ipynb
    examples/examples_prepared_fundamental_data.ipynb
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Theory
 
+   /theory/theoretical_basis.md
 
 ..
     Keep it! Math module requires it.

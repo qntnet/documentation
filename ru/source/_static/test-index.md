@@ -1,8 +1,3 @@
----
-title: Введение
-type: guide
-order: 2
----
 
 ## Что такое QuantNet?
 
