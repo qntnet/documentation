@@ -1,5 +1,65 @@
 # Improve the strategy
 
+## Exposure improving
+
+If the algorithm do not pass the [exposure filter](https://quantnet.ai/documentation/en/improve/max-sw.html), one may use the one of the two options bellow:
+
+### Remove days with high exposures
+
+**Function**
+```python
+rm_days_with_high_exposure(weights):
+    exposure = qnstats.calc_exposure(weights)
+    return weights.where(exposure.max('asset') < 0.049, 0)
+```
+
+**Parameters**
+|Parameter|Explanation|
+|---|---|
+|weights|xarray DataArray with weights of the algorithm.|
+
+**Output**
+
+The output is xarray DataArray with final improved weigths, passing the maximum stock weight filter.
+
+**Example**
+
+```python
+out3 = rm_days_with_high_exposure(output2)
+qnstats.check_exposure(out3)
+```
+
+
+### Mix weights
+
+**Function**
+```python
+mix_weights(primary, secondary, max_weight = 0.049)
+```
+
+**Parameters**
+
+|Parameter|Explanation|
+|---|---|
+|primary|xarray DataArray with weights of the algorithm that is need to be improved.|
+|secondary|xarray DataArray with weights of the algorithm that passes the maximum stock weight filter.|
+|max_weight|the maximum stock weight. Default value  = 0.049|
+
+**Output**
+
+The output is xarray DataArray with final improved weigths, passing the maximum stock weight filter.
+
+**Example**
+
+```python
+mean_weights = data.sel(field='is_liquid')
+mean_weights = mean_weights/abs(mean_weights).sum('asset')
+
+out4 = mix_weights(output2, mean_weights, max_weight = 0.049)
+
+qnstats.check_exposure(out4)
+```
+
 ## Neutralization
 
 We can exclude the market influence by balancing long/short positions for our algorithm. Thus, the total investment in the market will be $0. The neutralization could be done for the whole market or each industry (or smaller group). Mathematically, market neutralization is elementary - one need to substruct the mean value for each day. The more details are [here](https://quantnet.ai/documentation/en/improve/neutralization.html).
@@ -133,63 +193,3 @@ qngraph.make_plot_filled(performance.index, performance, name="PnL (Equity)", ty
 ![](pnl_neut_after.PNG)
 
 
-## Exposure improving
-
-If the algorithm do not pass the [exposure filter](https://quantnet.ai/documentation/en/improve/max-sw.html), one may use the one of the two options bellow:
-
-### Remove days with high exposures
-
-**Function**
-```python
-rm_days_with_high_exposure(weights):
-    exposure = qnstats.calc_exposure(weights)
-    return weights.where(exposure.max('asset') < 0.049, 0)
-```
-
-**Parameters**
-
-|Parameter|Explanation|
-|---|---|
-|weights|xarray DataArray with weights of the algorithm.|
-
-**Output**
-
-The output is xarray DataArray with final improved weigths, passing the maximum stock weight filter.
-
-**Example**
-
-```python
-out3 = rm_days_with_high_exposure(output2)
-qnstats.check_exposure(out3)
-```
-
-
-### Mix weights
-
-**Function**
-```python
-mix_weights(primary, secondary, max_weight = 0.049)
-```
-
-**Parameters**
-
-|Parameter|Explanation|
-|---|---|
-|primary|xarray DataArray with weights of the algorithm that is need to be improved.|
-|secondary|xarray DataArray with weights of the algorithm that passes the maximum stock weight filter.|
-|max_weight|the maximum stock weight. Default value  = 0.049|
-
-**Output**
-
-The output is xarray DataArray with final improved weigths, passing the maximum stock weight filter.
-
-**Example**
-
-```python
-mean_weights = data.sel(field='is_liquid')
-mean_weights = mean_weights/abs(mean_weights).sum('asset')
-
-out4 = mix_weights(output2, mean_weights, max_weight = 0.049)
-
-qnstats.check_exposure(out4)
-```

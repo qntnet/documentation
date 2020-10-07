@@ -1,13 +1,12 @@
-# Финансовые данные
+# Financial data
+Quantnet provides data for companies listed on the NYSE and NASDAQ. The data can be divided into three groups:
+- General information about tickers
+- Market data
+- Fundamental data
 
-Quantnet предоставляет данные компаний, торгующихся на биржах NYS и NASDAQ. Данные можно разделить на три группы:
-- Общие сведения о компании
-- Рыночные данные
-- Фундаментальные данные
-
-## Доступные инструменты
-Выгрузим финансовые данные по акциям.
-<p class="tip">Рекомендуем использовать данные начиная с 2015 года. Рыночные цены акций доступны с 2000 года</p>
+## Available instuments
+Let's download financial data on stocks.
+<p class = "tip"> We recommend using data from 2015. Market share prices available since 2000 </p>
 
 ```python
 import qnt.data    as qndata
@@ -19,7 +18,7 @@ data = qndata.load_data(tail = dt.timedelta(days = 4*365),
 ```python
 print(data.asset)
 ```
-> Доступно 953 финансовых инструмента
+> 1002 financial instruments are available:
 
 ```python
 <xarray.DataArray 'asset' (asset: 953)>
@@ -32,7 +31,7 @@ Coordinates:
 ```python
 data.asset.to_pandas().to_list()
 ```
-> Список финансовых инструментов
+> List of financial instruments
 ```python
 ['AMEX:APT',
  'AMEX:IBIO',
