@@ -8,34 +8,29 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Getting started
+   :caption: Quick Start
 
-   getting-started/about.md
-   getting-started/first/first.md
-   getting-started/create-strategy/create-strategy.md
-   getting-started/webinar1.md
-   getting-started/templates/templates.md
-   getting-started/edit-strategy/edit-strategy.md
-   getting-started/webinar2.md
-   getting-started/sent-strategy/sent-strategy.md
+   quick_start/quick_start.md
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Available functions
+   :caption: User Guide
 
-   /available_functions/data_load_functions.md
-   /available_functions/evaluation.md
-   /available_functions/improve_algorithm.md
+   user_guide/data.md
+   user_guide/functional_quality.md
+   user_guide/code.md
+   user_guide/passFilters.md
 
 .. toctree::
    :maxdepth: 2
-   :caption: Introduction to algorithmic trading
+   :caption: Api Reference
 
-   intro/algo.md
-   intro/basic.md
-   intro/positions.md
-   intro/rr.md
+   reference/data_load_functions.md
+   reference/evaluation.md
+   reference/exposure.md
+   reference/neutralization.md
+   reference/operators.md
 
 .. toctree::
    :maxdepth: 2
@@ -49,13 +44,22 @@ Contents
 
 
 .. toctree::
+   :maxdepth: 1
+   :caption: Templates
+
+   examples/examples_first.md
+   examples/examples_buy_and_hold.ipynb
+   examples/examples_advance_decline_line.ipynb
+   examples/examples_sRoc_wma_roc.ipynb
+   examples/examples_sRoc_Stochastic.ipynb
+   examples/examples_trend_based_strategy.ipynb
+   examples/examples_prepared_fundamental_data.ipynb
+
+.. toctree::
    :maxdepth: 2
-   :caption: Improve your algorithm
+   :caption: Theory
 
-   /improve/neutralization.md
-   /improve/max-sw.md
-
-
+   /theory/theoretical_basis.md
 
 ..
     Keep it! Math module requires it.

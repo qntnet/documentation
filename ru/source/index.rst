@@ -18,7 +18,6 @@ Contents
    :caption: User Guide
 
    user_guide/data.md
-   user_guide/functional_improvement_algorithms.md
    user_guide/functional_quality.md
    user_guide/code.md
    user_guide/passFilters.md

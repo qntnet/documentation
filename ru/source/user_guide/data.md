@@ -1,112 +1,63 @@
 # Финансовые данные
+
 Quantnet предоставляет данные компаний, торгующихся на биржах NYS и NASDAQ. Данные можно разделить на три группы:
-- Общие сведения о компании
-- Рыночные данные
-- Фундаментальные данные
+- [Общие сведения о тикерах](https://quantnet.ai/documentation/ru/user_guide/data.html#id2)
+- [Рыночные данные](https://quantnet.ai/documentation/ru/user_guide/data.html#id3)
+- [Фундаментальные данные](https://quantnet.ai/documentation/ru/user_guide/data.html#id4)
 
 ## Доступные инструменты
-Выгрузим финансовые данные по акциям.
-<p class="tip">Рекомендуем использовать данные начиная с 2015 года. Рыночные цены акций доступны с 2000 года</p>
+Выгрузим информацию о доступных к торговле инструментах за предыдущие 5 лет:
 
 ```python
-import qnt.data    as qndata
-import datetime    as dt
-data = qndata.load_data(tail = dt.timedelta(days = 4*365),
-                        forward_order = True)
+import qnt.data as qndata 
+import datetime as dt
+
+assets = qndata.load_assets(tail=dt.timedelta(days=5*365))
 ```
 или
-
 ```python
-import qnt.data    as qndata
-data = qndata.load_data(min_date="2017-01-01",
-                        forward_order = True)
+assets = qndata.load_assets(min_date="2015-01-01")
 ```
 
-```python
-print(data.asset)
-```
-Доступно 953 финансовых инструмента
+Доступно 1002 финансовых инструмента. Для каждого из них предоставляется краткая информация:
 
 ```python
-<xarray.DataArray 'asset' (asset: 953)>
-array(['AMEX:APT', 'AMEX:IBIO', 'AMEX:IGC', ..., 'NYSE:ZBH', 'NYSE:ZEN',
-       'NYSE:ZTS'], dtype='<U12')
-Coordinates:
-  * asset    (asset) <U12 'AMEX:APT' 'AMEX:IBIO' ... 'NYSE:ZEN' 'NYSE:ZTS'
+assets[0]
 ```
-
 ```python
-data.asset.to_pandas().tail().to_list()
+{'name': 'ALPHA PRO TECH LTD',
+ 'sector': 'Health Technology',
+ 'symbol': 'APT',
+ 'exchange': 'AMEX',
+ 'industry': 'Medical Specialties',
+ 'id': 'AMEX:APT',
+ 'cik': '884269',
+ 'FIGI': 'BBG000C1H7Y2'}
 ```
 
-```python
-['NYSE:YUMC', 'NYSE:ZAYO', 'NYSE:ZBH', 'NYSE:ZEN', 'NYSE:ZTS']
-```
-> С полным списком вы можете ознакомится по [ссылке](/documentation/ru/functional/functional_data_market_full_list.html)
+> С полным списком вы можете ознакомится по [ссылке](https://quantnet.ai/documentation/ru/user_guide/functional_data_market_full_list.html)
 
-## Выгрузка определённых компаний
-В переменной **company_names** укажите **компании**, которыми хотите **торговать**.
-```python
-
-import qnt.data    as qndata
-import datetime    as dt
-
-company_names=['NASDAQ:AAPL', 'NASDAQ:GOOGL']
-
-data = qndata.load_data(tail = dt.timedelta(days = 4*365),
-                        assets=company_names,
-                        forward_order = True)
-
-```
-
-или
-
-```python
-
-import qnt.data    as qndata
-import datetime    as dt
-
-company_names=['NASDAQ:AAPL', 'NASDAQ:GOOGL']
-
-def get_data(instruments_names):
-    return qndata.load_data(
-                            tail = dt.timedelta(days=3*380),
-                        forward_order = True,
-                        dims=("time", "field", "asset"),
-                         assets=instruments_names)
-
-data = get_data(company_names)
-```
-
-или
-
-```python
-
-
-import qnt.data    as qndata
-
-data = qndata.load_data(min_date="2017-01-01",
-                        forward_order = True)
-
-company_names = ['NASDAQ:AAPL', 'NASDAQ:GOOGL']
-filter_data = data.sel(asset=company_names)
-```
-
-или
-
-```python
-
-def get_company_filter_by(data_all, company_names):
-    filler = data_all.sel(asset=company_names)
-    return filler
-
-filter_data = get_company_filter_by(data, company_names)
-```
 
 ## Рыночные данные
 
-Подробную инструкцию как скачать рыночные данные можно получить в
-[этом](https://quantnet.ai/referee/template/14262139/html) шаблоне.
+> Рекомендуем использовать данные начиная с 2015 года. Рыночные цены акций доступны с 2000 года.
+
+Для выгрузки рыночных данных достаточно воспользоваться следующей функцией:
+
+```python
+import qnt.data    as qndata
+import datetime    as dt
+
+data = qndata.load_data(tail = dt.timedelta(days = 4*365),
+                        forward_order = True)
+
+price_open = data.sel(field="open")
+price_close = data.sel(field="close")
+price_high = data.sel(field="high")
+price_low = data.sel(field="low")
+volume_day = data.sel(field="vol")
+is_liquid = data.sel(field="is_liquid")
+```
 
 | Наименование данных | Описание |
 | ------------------ | -------- |
@@ -122,33 +73,30 @@ filter_data = get_company_filter_by(data, company_names)
 
 _Таблица 1. Доступные данные._
 
-Более детальное описание данных можно найти
-[здесь](https://quantnet.ai/blog/%d0%b2%d1%85%d0%be%d0%b4%d0%bd%d1%8b%d0%b5-%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d0%b5-%d0%b4%d0%bb%d1%8f-%d1%81%d1%82%d1%80%d0%b0%d1%82%d0%b5%d0%b3%d0%b8%d0%b8-%d1%86%d0%b5%d0%bd%d0%b0-%d0%be%d1%82%d0%ba/).
+**Выгрузка определённых компаний**
+-------------------
+
+Вы так же можете ограничить выгрузку указав инструменты, которые вас интересуют. В переменной **assets_names** укажите **компании**, которыми хотите **торговать**.
+
+Например, вы можете сформировать список из ранее выгруженных assets:
+```python
+assets_names = [i["id"] for i in assets]
+```
+Или же задать компании вручную:
 
 ```python
+assets_names=['NASDAQ:AAPL', 'NASDAQ:GOOGL']
 
-import qnt.data    as qndata
-import datetime    as dt
-
-assets_for_load=['NASDAQ:AAPL', 'NASDAQ:GOOGL']
-
-data = qndata.load_data(tail = dt.timedelta(days = 4*365),
-                        assets=assets_for_load,
+data = qndata.load_data(tail = dt.timedelta(days = 5*365),
+                        assets=assets_names,
                         forward_order = True)
 
-price_open = data.sel(field="open")
-price_close = data.sel(field="close")
-price_high = data.sel(field="high")
-price_low = data.sel(field="low")
-volume_day = data.sel(field="vol")
-is_liquid = data.sel(field="is_liquid")
+price_open = data.sel(field="open")   
 ```
-
 
 ```python
 price_open.to_pandas().tail()
 ```
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -206,74 +154,12 @@ price_open.to_pandas().tail()
 </table>
 </div>
 
-```python
-volume_day.to_pandas().tail()
-
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>asset</th>
-      <th>NASDAQ:AAPL</th>
-      <th>NASDAQ:GOOGL</th>
-    </tr>
-    <tr>
-      <th>time</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2020-08-13</th>
-      <td>1.803128e+06</td>
-      <td>1114479.0</td>
-    </tr>
-    <tr>
-      <th>2020-08-14</th>
-      <td>1.455773e+06</td>
-      <td>1090490.0</td>
-    </tr>
-    <tr>
-      <th>2020-08-17</th>
-      <td>1.051122e+06</td>
-      <td>998010.0</td>
-    </tr>
-    <tr>
-      <th>2020-08-18</th>
-      <td>9.294262e+05</td>
-      <td>1399978.0</td>
-    </tr>
-    <tr>
-      <th>2020-08-19</th>
-      <td>1.290599e+06</td>
-      <td>1515515.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 ## Fundamental data
 
 Подробную инструкцию как скачать фундаментальные данные можно получить
 в [этом](https://quantnet.ai/referee/template/15325118/html) шаблоне.
+
 
 ### Instant indicators.
 
@@ -330,3 +216,4 @@ _Таблица 2. Periodical indicators._
 комиссии по ценным бумагам и биржам США. Отчеты состоят из фактов
 (facts), представленных в основном в формате XBRL. Наименование фактов
 можно найти [здесь](http://xbrlview.fasb.org/yeti).
+
