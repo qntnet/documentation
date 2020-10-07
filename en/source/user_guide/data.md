@@ -1,9 +1,9 @@
 # Financial data
 
 Quantnet provides data for companies listed on the NYSE and NASDAQ. The data can be divided into three groups:
-- [General information about tickers](https://quantnet.ai/documentation/ru/user_guide/data.html#id2)
-- [Market data](https://quantnet.ai/documentation/ru/user_guide/data.html#id3)
-- [Fundamental data](https://quantnet.ai/documentation/ru/user_guide/data.html#id4)
+- [General information about tickers](#available-instuments)
+- [Market data](#market-data)
+- [Fundamental data](#fundamental-data)
 
 ## Available instuments
 Let's download information about the instruments available for trading for the previous 5 years:
@@ -73,8 +73,8 @@ is_liquid = data.sel(field="is_liquid")
 
 _Table 1. Available market data._
 
-**Uploading certain companies**
--------------------
+### Uploading certain companies
+
 
 You can also limit the data loading by specifying the tools that interest you. In the **assets_names** variable, specify the **companies** you want to **trade**.
 
