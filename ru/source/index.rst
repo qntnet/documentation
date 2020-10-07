@@ -8,24 +8,22 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Quick Start
+   :caption: Быстрый старт
 
    quick_start/quick_start.md
 
-
 .. toctree::
    :maxdepth: 2
-   :caption: User Guide
+   :caption: Руководство
 
    user_guide/data.md
-   user_guide/functional_improvement_algorithms.md
    user_guide/functional_quality.md
-   user_guide/code.md
+   user_guide/functional_improvement_algorithms.md
    user_guide/passFilters.md
 
 .. toctree::
    :maxdepth: 2
-   :caption: Api Reference
+   :caption: API
 
    reference/data_load_functions.md
    reference/evaluation.md
@@ -34,19 +32,8 @@ Contents
    reference/operators.md
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Algorithm quality
-
-   /quality/rules.md
-   /quality/sharpe.md
-   /quality/unique.md
-   /quality/major.md
-   /quality/isos.md
-
-
-.. toctree::
    :maxdepth: 1
-   :caption: Templates
+   :caption: Примеры
 
    examples/examples_first.md
    examples/examples_buy_and_hold.ipynb
@@ -57,8 +44,15 @@ Contents
    examples/examples_prepared_fundamental_data.ipynb
 
 .. toctree::
+   :maxdepth: 1
+   :caption: Книга рецептов
+
+   user_guide/forward-looking.md
+   user_guide/code.md
+
+.. toctree::
    :maxdepth: 2
-   :caption: Theory
+   :caption: Теория
 
    /theory/theoretical_basis.md
 
