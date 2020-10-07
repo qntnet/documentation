@@ -149,9 +149,6 @@ is_liquid = data.sel(field="is_liquid")
 price_open.to_pandas().tail()
 ```
 
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -209,16 +206,10 @@ price_open.to_pandas().tail()
 </table>
 </div>
 
-
-
-
 ```python
 volume_day.to_pandas().tail()
 
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -280,7 +271,6 @@ volume_day.to_pandas().tail()
 
 
 ## Fundamental data
-
 
 Подробную инструкцию как скачать фундаментальные данные можно получить
 в [этом](https://quantnet.ai/referee/template/15325118/html) шаблоне.
