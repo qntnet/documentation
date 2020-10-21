@@ -1,4 +1,5 @@
-# Financial data
+# Stocks
+
 Quantnet provides data for companies listed on the NYSE and NASDAQ. The data can be divided into three groups:
 - General information about tickers
 - Market data

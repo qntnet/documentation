@@ -222,7 +222,7 @@ qnstepper.write_output(weights)
 [годов](https://www.cnbc.com/2017/06/18/the-sp-500-has-already-met-its-average-return-for-a-full-year.html).
 Значит ли это, что просто держать длинные позиции хорошая идея?
 
-![sp500](snp500.png)
+![sp500](./pictures/snp500.png)
 _Рис.1_
 
 

@@ -89,7 +89,7 @@ performance = stat.to_pandas()["equity"]
 qngraph.make_plot_filled(performance.index, performance, name="PnL (Equity)", type="log")
 ```
 
-![](pnl.PNG)
+![](./pictures/pnl.PNG)
 
 ```python
 # show underwater chart:
@@ -97,7 +97,7 @@ UWchart = stat.to_pandas()["underwater"]
 qngraph.make_plot_filled(UWchart.index, UWchart, color="darkred", name="Underwater Chart", range_max=0)
 ```
 
-![](underwater.PNG)
+![](./pictures/underwater.PNG)
 
 ```python
 # show rolling Sharpe ratio on a 3-year basis:
@@ -105,7 +105,7 @@ SRchart = stat.to_pandas()["sharpe_ratio"].iloc[(252*3):]
 qngraph.make_plot_filled(SRchart.index, SRchart, color="#F442C5", name="Rolling SR")
 ```
 
-![](rollingsharpe.PNG)
+![](./pictures/rollingsharpe.PNG)
 
 ## Exposure filter
 
