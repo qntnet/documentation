@@ -19,7 +19,7 @@ Develop strategies in **Jupyter Notebook** or **JupyterLab**.
 * <a class="tip" href='/personalpage/strategies' target='_blank'>Open the strategy development tab</a>
 * Click "create strategy" or "copy" any template of ready-made articles.
 
-Below are the main steps involved in most strategies. You can copy the [entire strategy](#) and open it in your personal account.
+Below are the main steps involved in most strategies. You can copy the [entire strategy](#) and open it in your account.
 
 
 ## 1. Preparations
@@ -61,7 +61,7 @@ all_close = data.loc[::, "close", :]
 all_open = data.loc[::, "open", :]
 liquid = data.loc[::, "is_liquid", :]
 ```
-Liquid is a True/False xarray DataArray. True value for a specific day for a specific company means that the stock has been in the top 500 liquid stocks in the last month.
+Liquid is a True/False xarray DataArray. A true value for a specific day for a specific company means that the stock has been in the top 500 liquid stocks in the last month.
 
 
 ## 2. Weights allocation
@@ -142,7 +142,7 @@ If you are satisfied enough with your algorithm and it passes all the requiremen
 qnstepper.write_output(output)
 ```
 
-At this stage the code is ready for submission. Just click on the submission button in your account page and we will evaluate your strategy live on our servers!
+At this stage, the code is ready for submission. Just click on the submission button on your account page and we will evaluate your strategy live on our servers!
 
 [Copy entire strategy](#)
 

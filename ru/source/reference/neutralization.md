@@ -107,7 +107,7 @@ performance = stat.to_pandas()["equity"].iloc[:]
 qngraph.make_plot_filled(performance.index, performance, name="PnL (Equity)", type="log")
 ```
 
-![](pnl_neut_init.PNG)
+![](./pictures/pnl_neut_init.PNG)
 
 Снять влияние рынка можно, применив функцию нейтрализации:
 
@@ -130,4 +130,4 @@ performance = stat.to_pandas()["equity"].iloc[:]
 qngraph.make_plot_filled(performance.index, performance, name="PnL (Equity)", type="log")
 ```
 
-![](pnl_neut_after.PNG)
+![](./pictures/pnl_neut_after.PNG)

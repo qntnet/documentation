@@ -1,6 +1,6 @@
 # Algorithm quality
 
-Once we have constructed an algorithm and plotted an equity on a historical data, we need to use a set of criteria to evaluate the performance. All current competition rules are available [here](https://quantnet.ai/contest).
+Once we have constructed an algorithm and plotted equity on historical data, we need to use a set of criteria to evaluate the performance. All current competition rules are available [here](https://quantnet.ai/contest).
 
 ## Sharpe ratio
 >First, to estimate the profitability of the algorithm, we measure the Sharpe ratio (SR), the most important and popular metric. The higher the value, the more stable the strategy.
@@ -69,7 +69,7 @@ Sharpe ratio = 0.902248100035541
 WARNING! This strategy correlates with other strategies.
 The number of systems with a larger Sharpe ratio and correlation larger than 0.8: 1
 The max correlation value (with systems with a larger Sharpe ratio): 0.9027474076009878
-Current sharpe ratio(3y): 0.812552583846677
+Current Sharpe ratio(3y): 0.812552583846677
 ```
 
 ## Statistics

@@ -105,7 +105,7 @@ cumulative profit. In our platform, we set initial equity to 1, so it
 can be scaled easily.
 
 
-![pnl](pnl.png)
+![pnl](./pictures/PnL.PNG)
 _Pic. 1_
 
 
@@ -198,8 +198,8 @@ The denominator is a standard deviation of the portfolio’s excess return. Anot
 
 Thus, the Sharpe ratio is the return per unit of risk (volatility). The greater the Sharpe ratio, the better (Fig.2). To submit a strategy successfully, the SR should be higher than 1 over the last 3 years.
 
-![Sharpe low](low_sharpe.png)
-![Sharpe high](high_sharpe.png)
+![Sharpe low](./pictures/low_sharpe_1.28.PNG)
+![Sharpe high](./pictures/high_sharpe_7.62.PNG)
 Figure 2: Equity charts for different algorithms. Upper: ``$` \text{SR} = 1.28 `$``.
 Lower: ``$` \text{SR} = 7.62 `$``
 
@@ -279,7 +279,7 @@ There are many such news every year - they merge with the information noise and 
 
   Say you are participating in QuantNet Contest in the 6 months competition and create an algorithm for stock trading. According to the rules, you have a good Sharpe (>1) and low correlation (<0.9) over the previous 3 years. The backtest for this 3 years is in-sample (Fig.3). Say we measure SR in-sample - SR_IS. The real time test for 6 months is out-of-sample and gives SR_OS. All strategies are rated by min(SR_IS, SR_OS). The larger the better.
 
-![IS OS](isos.png)
+![IS OS](./pictures/home_competition_main_isos.png)
 
 
 ## Improving the algorithm
@@ -293,7 +293,7 @@ from a few percent to over 20% in some
 [years](https://www.cnbc.com/2017/06/18/the-sp-500-has-already-met-its-average-return-for-a-full-year.html).
 Does it mean that simply opening a long positions is a good idea?
 
-![sp500](snp500.png)
+![sp500](./pictures/SnP500.PNG)
 
 
 Despite the growth, the Sharpe ratio of S&P500 is less than 1. One of

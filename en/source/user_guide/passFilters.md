@@ -42,11 +42,11 @@ Only relevant for CRYPTO. If you see the message
 ## Sharpe Ratio
 If you see the message "Sharpe Ratio for the last 3 years is less than 1.0", it means that the performance of your strategy is low during step by step  calculation.
 
-You need to improve your algorithm and increase the sharpe ratio.
+You need to improve your algorithm and increase the Sharpe ratio.
 
 You may face the *forward looking* problem when your the algorithm uses data from the future (looks ahead). Functions from package `qnt.forward_looking` will help you solve this problem. Usage examples can be found in templates.
 
-A step-by-step calculation is the best way to test a model and exclude forward looking, but it takes quite a long time. You can perform a step-by-step calculation lyke the system does. For these perposes, please use `precheck.ipynb` and set` passes`> = 1000 when calling ʻevaluate_passes`. Basically, fewer passes (100 or 200) can provide useful information about the real performance of your strategy.
+A step-by-step calculation is the best way to test a model and exclude forward-looking, but it takes quite a long time. You can perform a step-by-step calculation as the system does. For these purposes, please use `precheck.ipynb` and set` passes`> = 1000 when calling ʻevaluate_passes`. Fewer passes (100 or 200) can provide useful information about the real performance of your strategy.
 
 ## Correlation
 If you see the message "The strategy is highly correlated ..." then your strategy is very similar to the other strategy posted earlier.
@@ -60,12 +60,12 @@ In this case, you can try:
 - write a new strategy
 
 ## Exposure
-Relevant for STOCKS. If you see the message "The strategy has a high level of risk (Exposure)." then your strategy uses weak number of instruments.
+Relevant for STOCKS. If you see the message "The strategy has a high level of risk (Exposure)." then your strategy uses a weak number of instruments.
  
-You can fix the the startegy in 3 ways:
+You can fix the strategy in 3 ways:
 
 - improve the strategy so that it will use more tools
-- mix the weights of your strategy with a strategy that has passes axposure filter. For this perpose you can use `qnt.exposure.mix_weights`
+- mix the weights of your strategy with a strategy that has passed the exposure filter. For this perpose, you can use `qnt.exposure.mix_weights`
 - exclude days with high exposure from your strategy weights using `qnt.exposure.drop_bad_days`
 
 [More details.](../reference/improve_algorithm.md/#Exposure improving).

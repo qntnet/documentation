@@ -1,8 +1,8 @@
-<p class="tip">
-This section contains detailed API reference documentation. It is intended for people who are already familiar with QuantNet platform. One may prefer to visit  <a href="/documentation/en/getting-started/first/first.html">Getting started page</a> for the first time.
-</p>
-
 # Data loading
+
+<p class="tip">
+This section contains detailed API reference documentation. It is intended for people who are already familiar with the QuantNet platform. One may prefer to visit  <a href="/documentation/en/getting-started/first/first.html">Getting started page</a> for the first time.
+</p>
 
 ## Assets
 
@@ -63,7 +63,7 @@ assets = qndata.load_assets(tail = dt.timedelta(days=4*365))
 
 ## Market data
 
-Market data is mainly connected to stocks daily prices. [This](https://quantnet.ai/referee/template/14262139/html) template shows how to download market data.
+Market data is mainly connected to stocks' daily prices. [This](https://quantnet.ai/referee/template/14262139/html) template shows how to download market data.
 
 **Function**
 
@@ -154,7 +154,7 @@ qnt.data.secgov_load_indicators(assets, time_coord, standard_indicators=None, bu
 
 **Output**
 
-The output is xarray DataArray with historical fundomental data.
+The output is xarray DataArray with historical fundamental data.
 
 **Example**
 
@@ -168,7 +168,7 @@ data_lbls = ['assets', 'liabilities']
 fun_data1 = qnt.data.secgov_load_indicators(assets,time_coord = data.time, standard_indicators = data_lbls)
 ```
 
-The second way to load fundamental data is more complecated but gives user more options. Each report for the [Securities and Exchange Commission](https://www.sec.gov/) contains facts that are listed [here](http://xbrlview.fasb.org/yeti/). One can make their own builder that takes a name and a list of desired facts. Some indicators are instant and updated regularly within each report.
+The second way to load fundamental data is more complicated but gives user more options. Each report for the [Securities and Exchange Commission](https://www.sec.gov/) contains facts that are listed [here](http://xbrlview.fasb.org/yeti/). One can make their builder that takes a name and a list of desired facts. Some indicators are instant and updated regularly within each report.
 
 ```python
 instant_data_list = [InstantIndicatorBuilder('assets' , ['us-gaap:Assets'], True),

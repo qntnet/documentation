@@ -2,7 +2,7 @@
 
 ## Exposure improving
 
-If the algorithm do not pass the [exposure filter](https://quantnet.ai/documentation/en/improve/max-sw.html), one may use the one of the two options bellow:
+If the algorithm does not pass the [exposure filter](https://quantnet.ai/documentation/en/improve/max-sw.html), one may use one of the two options bellow:
 
 ### Remove days with high exposures
 
@@ -20,7 +20,7 @@ rm_days_with_high_exposure(weights):
 
 **Output**
 
-The output is xarray DataArray with final improved weigths, passing the maximum stock weight filter.
+The output is xarray DataArray with final improved weights, passing the maximum stock weight filter.
 
 **Example**
 
@@ -47,7 +47,7 @@ mix_weights(primary, secondary, max_weight = 0.049)
 
 **Output**
 
-The output is xarray DataArray with final improved weigths, passing the maximum stock weight filter.
+The output is xarray DataArray with final improved weights, passing the maximum stock weight filter.
 
 **Example**
 
@@ -62,7 +62,7 @@ qnstats.check_exposure(out4)
 
 ## Neutralization
 
-We can exclude the market influence by balancing long/short positions for our algorithm. Thus, the total investment in the market will be $0. The neutralization could be done for the whole market or each industry (or smaller group). Mathematically, market neutralization is elementary - one need to substruct the mean value for each day. The more details are [here](https://quantnet.ai/documentation/en/improve/neutralization.html).
+We can exclude the market influence by balancing long/short positions for our algorithm. Thus, the total investment in the market will be $0. The neutralization could be done for the whole market or each industry (or smaller group). Mathematically, market neutralization is elementary - one needs to substruct the mean value for each day. The more details are [here](https://quantnet.ai/documentation/en/improve/neutralization.html).
 
 **Function**
 ```python
@@ -79,11 +79,11 @@ qnt.neutralization.neutralize(weights, assets, group = 'market')
 
 **Output**
 
-The output is xarray DataArray with neutralised positions among the selected group.
+The output is xarray DataArray with neutralized positions among the selected group.
 
 **Example**
 
-We can consider the implementation of neutralization function on an example of an investing strategy. Each algorithm starts with loading libraries and data:
+We can consider the implementation of the neutralization function on an example of an investing strategy. Each algorithm starts with loading libraries and data:
 
 ```python
 # Basic libraries.
@@ -167,7 +167,7 @@ performance = stat.to_pandas()["equity"].iloc[:]
 qngraph.make_plot_filled(performance.index, performance, name="PnL (Equity)", type="log")
 ```
 
-![](pnl_neut_init.PNG)
+![](./pictures/pnl_neut_init.PNG)
 
 One can remove market influence by applying neutralization function:
 
@@ -190,6 +190,6 @@ performance = stat.to_pandas()["equity"].iloc[:]
 qngraph.make_plot_filled(performance.index, performance, name="PnL (Equity)", type="log")
 ```
 
-![](pnl_neut_after.PNG)
+![](./pictures/pnl_neut_after.PNG)
 
 
