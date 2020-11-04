@@ -4,7 +4,7 @@ import './vuepress/styles/theme.styl'
 import './sphinx-theme.styl'
 
 import {utm} from 'url-utm-params';
-import VueAnalytics from 'vue-analytics'
+import * as tracker from './tracker';
 
 import OutboundLink from './OutboundLink.vue'
 import Navbar from './Navbar.vue'
@@ -30,11 +30,6 @@ Vue.component('about-feedback', AboutFeedback)
 Vue.component('router-link', {
     props: ['to'],
     template: '<a :href="to"><slot></slot></a>',
-})
-
-
-Vue.use(VueAnalytics, {
-    id: 'UA-139360288-1'
 })
 
 new Vue({
@@ -67,30 +62,9 @@ new Vue({
         if (!isUtmExist(utmName)) {
             setUtmInCookie(utmName);
         }
+
         const qn_uid = getCookie('qn_uid');
-        let params = qn_uid ? {UserID: qn_uid} : {};
-
-
-        createYandexMetrica(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        const ym = window.ym;
-
-        ym(51571100, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true,
-            trackHash: true,
-            userParams: params
-        });
-
-        function createYandexMetrica(m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () {
-                (m[i].a = m[i].a || []).push(arguments)
-            };
-            m[i].l = 1 * new Date();
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        }
+        tracker.userInfo({qntId: qn_uid});
 
         function isUtmExist(utmName) {
             const currentUtm = getCookie(utmName);
