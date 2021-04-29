@@ -49,7 +49,7 @@ contracts_roll_over = futures_data.sel(field="roll")
 | oi                 | The number of futures contracts currently in circulation in the market.|
 | roll              | Futures contracts Rollover.|
 
-Let's say we are interested in British pound futures. They allow traders to assess the value of the pounds sterling against the US dollar, as well as the ability to reduce the risk of fluctuations in exchange rates in other foreign trade markets. [CME Globex](https://www.cmegroup.com/globex.html) futures code: 6B.
+Let's say we are interested in British pound futures. They allow traders to assess the value of the pounds sterling against the US dollar, as well as the ability to reduce the risk of fluctuations in exchange rates in other foreign trade markets.
 
 Thus, the array of interest with daily data on the currency pair at the close of the exchange looks like this:
 
