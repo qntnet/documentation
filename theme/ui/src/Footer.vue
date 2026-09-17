@@ -149,8 +149,8 @@ export default {
 
 <style lang="scss">
 
-$average_font: "Gotham Pro Regular";
-$light_font: 'Gotham Pro Light';
+$average_font: "Roboto", sans-serif;
+$light_font: 'Roboto', sans-serif;
 
 // Main colors
 $light_main_color: #ffffff;
