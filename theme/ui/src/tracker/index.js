@@ -57,7 +57,7 @@ function event(name) {
   activeTrackers.forEach(t => t.event(name));
 }
 
-init();
+// init();
 
 export {
     userInfo,
