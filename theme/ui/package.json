@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "node-sass": "^4.14.1",
+    "sass": "^1.32.13",
     "sass-loader": "^9.0.3",
     "url-utm-params": "^0.1.0",
     "vue": "^2.5.16",
@@ -16,6 +16,7 @@
     "vue-yandex-metrika": "^1.8.3"
   },
   "devDependencies": {
+    "webpack": "4.47.0",
     "@vue/cli-plugin-babel": "^3.0.0-rc.9",
     "@vue/cli-plugin-eslint": "^3.0.0-rc.9",
     "@vue/cli-service": "^3.0.0-rc.9",

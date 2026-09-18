@@ -12,7 +12,6 @@
     #}
     {%- block css %}
     <!--    <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1)}}">-->
-    <link rel="stylesheet" href="{{ pathto('_static/theme.css', 1)}}">
     <link rel="stylesheet" href="{{ pathto('_static/sphinx_press_theme.css', 1)}}">
     {%- for css in css_files %}
     {%- if css|attr("rel") %}
@@ -35,8 +34,8 @@
     {%- endfor %}
 
     {# press js #}
-    <script src="{{ pathto('_static/theme-vendors.js', 1)}}"></script>
-    <script src="{{ pathto('_static/theme.js', 1)}}" defer></script>
+    <script src="{{ pathto('_static/js/chunk-vendors.js', 1)}}"></script>
+    <script src="{{ pathto('_static/js/app.js', 1)}}" defer></script>
     {%- endblock %}
     {%- if pageurl %}
     <link rel="canonical" href="{{ pageurl }}"/>
